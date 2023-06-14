@@ -1,7 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function TodoListItem(){
-return()
+function TodoListItem() {
+  return (
+    <div>
+      <li>{item.title}</li>
+    </div>
+  );
 }
 
-export default TodoListItem
+export default TodoListItem;
