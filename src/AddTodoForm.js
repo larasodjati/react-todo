@@ -9,9 +9,9 @@ function AddTodoForm(props) {
   };
   const handleAddTodo = (event) => {
     event.preventDefault();
-    props.onAddTodo(todoTitle);
+    props.onAddTodo({ id: Date.now(), title: todoTitle });
     console.log(todoTitle);
-    event.target.reset();
+    setTodoTitle('');
   };
   return (
     <form onSubmit={handleAddTodo}>
