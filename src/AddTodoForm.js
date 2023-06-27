@@ -9,9 +9,11 @@ function AddTodoForm({ onAddTodo }) {
   };
   const handleAddTodo = (event) => {
     event.preventDefault();
-    onAddTodo({ id: Date.now(), title: todoTitle });
-    console.log(todoTitle);
-    setTodoTitle('');
+    if (todoTitle.trim() !== '') {
+      onAddTodo({ id: Date.now(), title: todoTitle });
+      console.log(todoTitle);
+      setTodoTitle('');
+    }
   };
   return (
     <form onSubmit={handleAddTodo}>
