@@ -24,14 +24,14 @@ function App() {
   const [todoList, setTodoList, addTodo, lastAddedTodo] =
     useSemiPersistentState();
   return (
-    <div>
+    <>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
       <p>
         New thing to do is <strong>{lastAddedTodo}</strong>
       </p>
       <TodoList todoList={todoList} />
-    </div>
+    </>
   );
 }
 
