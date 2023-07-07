@@ -4,11 +4,17 @@ import TodoList from './TodoList';
 
 function App() {
   const [todoList, setTodoList] = React.useState([]);
+
+  React.useEffect(() => {
+    localStorage.setItem('savedTodoList', todoList);
+  }, [todoList]);
+
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
   };
   const lastAddedTodo =
     todoList.length > 0 ? todoList[todoList.length - 1].title : '';
+
   return (
     <div>
       <h1>Todo List</h1>
