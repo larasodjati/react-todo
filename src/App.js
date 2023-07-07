@@ -21,6 +21,8 @@ const useSemiPersistentState = () => {
 };
 
 function App() {
+  const [todoList, setTodoList, addTodo, lastAddedTodo] =
+    useSemiPersistentState();
   return (
     <div>
       <h1>Todo List</h1>
