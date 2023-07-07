@@ -2,7 +2,7 @@ import React from 'react';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
-function App() {
+const useSemiPersistentState = () => {
   const [todoList, setTodoList] = React.useState(
     JSON.parse(localStorage.getItem('savedTodoList')) || []
   );
@@ -17,6 +17,10 @@ function App() {
   const lastAddedTodo =
     todoList.length > 0 ? todoList[todoList.length - 1].title : '';
 
+  return [todoList, setTodoList, addTodo, lastAddedTodo];
+};
+
+function App() {
   return (
     <div>
       <h1>Todo List</h1>
