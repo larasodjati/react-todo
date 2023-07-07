@@ -3,15 +3,20 @@ import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
 function App() {
-  const [newTodo, setNewTodo] = React.useState('');
+  const [todoList, setTodoList] = React.useState([]);
+  const addTodo = (newTodo) => {
+    setTodoList([...todoList, newTodo]);
+  };
+  const lastAddedTodo =
+    todoList.length > 0 ? todoList[todoList.length - 1].title : '';
   return (
     <div>
       <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={setNewTodo} />
+      <AddTodoForm onAddTodo={addTodo} />
       <p>
-        New thing to do is <strong>{newTodo}</strong>
+        New thing to do is <strong>{lastAddedTodo}</strong>
       </p>
-      <TodoList />
+      <TodoList todoList={todoList} />
     </div>
   );
 }
