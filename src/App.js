@@ -4,7 +4,7 @@ import TodoList from './TodoList';
 
 function App() {
   const [todoList, setTodoList] = React.useState(
-    localStorage.getItem('savedTodoList') || []
+    JSON.parse(localStorage.getItem('savedTodoList')) || []
   );
 
   React.useEffect(() => {
