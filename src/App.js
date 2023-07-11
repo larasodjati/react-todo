@@ -11,18 +11,17 @@ const useSemiPersistentState = () => {
     localStorage.setItem('savedTodoList', JSON.stringify(todoList));
   }, [todoList]);
 
+  return [todoList, setTodoList];
+};
+
+function App() {
+  const [todoList, setTodoList] = useSemiPersistentState();
+
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
   };
   const lastAddedTodo =
     todoList.length > 0 ? todoList[todoList.length - 1].title : '';
-
-  return [todoList, setTodoList, addTodo, lastAddedTodo];
-};
-
-function App() {
-  const [todoList, setTodoList, addTodo, lastAddedTodo] =
-    useSemiPersistentState();
   return (
     <>
       <h1>Todo List</h1>
