@@ -9,6 +9,7 @@ function InputWithLabel(props) {
         id="todoTitle"
         name="title"
         value={props.todoTitle}
+        autoFocus
         onChange={props.handleTitleChange}
       />
     </>
