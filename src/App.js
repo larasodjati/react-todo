@@ -22,6 +22,11 @@ function App() {
   };
   const lastAddedTodo =
     todoList.length > 0 ? todoList[todoList.length - 1].title : '';
+
+  const removeTodo = (id) => {
+    const updatedTodoList = todoList.filter((todo) => todo.id !== id);
+    setTodoList(updatedTodoList);
+  };
   return (
     <>
       <h1>Todo List</h1>
@@ -29,7 +34,7 @@ function App() {
       <p>
         New thing to do is <strong>{lastAddedTodo}</strong>
       </p>
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
     </>
   );
 }
