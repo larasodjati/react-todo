@@ -21,8 +21,9 @@ function AddTodoForm({ onAddTodo }) {
       <InputWithLabel
         todoTitle={todoTitle}
         handleTitleChange={handleTitleChange}
-        label="Title"
-      />
+      >
+        Title
+      </InputWithLabel>
       <button>Add</button>
     </form>
   );
