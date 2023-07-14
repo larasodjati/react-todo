@@ -1,6 +1,6 @@
 import React from 'react';
 
-function InputWithLabel() {
+function InputWithLabel(props) {
   return (
     <>
       <label htmlFor="todoTitle">Title</label>
@@ -8,8 +8,8 @@ function InputWithLabel() {
         type="text"
         id="todoTitle"
         name="title"
-        value={todoTitle}
-        onChange={handleTitleChange}
+        value={props.todoTitle}
+        onChange={props.handleTitleChange}
       />
     </>
   );
