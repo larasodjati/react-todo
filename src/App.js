@@ -27,6 +27,9 @@ function App() {
   const removeTodo = (id) => {
     const updatedTodoList = todoList.filter((todo) => todo.id !== id);
     setTodoList(updatedTodoList);
+
+    const removedItem = todoList.find((todo) => todo.id === id);
+    setRemovedTodo(removedItem);
   };
   return (
     <>
