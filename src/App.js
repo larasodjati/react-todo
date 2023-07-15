@@ -16,6 +16,7 @@ const useSemiPersistentState = () => {
 
 function App() {
   const [todoList, setTodoList] = useSemiPersistentState();
+  const [removedTodo, setRemovedTodo] = React.useState(null);
 
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
