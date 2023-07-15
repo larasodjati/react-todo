@@ -37,7 +37,7 @@ function App() {
       <AddTodoForm onAddTodo={addTodo} />
       {removedTodo && (
         <p>
-          Item <strong>{removeTodo.title} has been removed.</strong>
+          <strong>{removedTodo.title}</strong> has been removed.
         </p>
       )}
       <p>
