@@ -35,6 +35,11 @@ function App() {
     <>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
+      {removedTodo && (
+        <p>
+          Item <strong>{removeTodo.title} has been removed.</strong>
+        </p>
+      )}
       <p>
         New thing to do is <strong>{lastAddedTodo}</strong>
       </p>
