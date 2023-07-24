@@ -20,6 +20,10 @@ function App() {
   );
 
   React.useEffect(() => {
+    new Promise((resolve, reject) => {});
+  }, []);
+
+  React.useEffect(() => {
     localStorage.setItem('savedTodoList', JSON.stringify(todoList));
   }, [todoList]);
   const [removedTodo, setRemovedTodo] = React.useState(null);
