@@ -20,7 +20,11 @@ function App() {
   );
 
   React.useEffect(() => {
-    new Promise((resolve, reject) => {});
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({ data });
+      });
+    });
   }, []);
 
   React.useEffect(() => {
