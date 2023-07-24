@@ -26,7 +26,9 @@ function App() {
           }
         });
       });
-    }).then((result) => {});
+    }).then((result) => {
+      setTodoList(result.data.todoList);
+    });
   }, []);
 
   React.useEffect(() => {
