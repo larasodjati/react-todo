@@ -15,9 +15,7 @@ import TodoList from './TodoList';
 // };
 
 function App() {
-  const [todoList, setTodoList] = React.useState(
-    JSON.parse(localStorage.getItem('savedTodoList')) || []
-  );
+  const [todoList, setTodoList] = React.useState([]);
 
   React.useEffect(() => {
     new Promise((resolve, reject) => {
