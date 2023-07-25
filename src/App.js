@@ -29,6 +29,7 @@ function App() {
       }, 2000);
     }).then((result) => {
       setTodoList(result.data.todoList);
+      setIsLoading(false);
     });
   }, []);
 
