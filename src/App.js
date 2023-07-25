@@ -16,6 +16,7 @@ import TodoList from './TodoList';
 
 function App() {
   const [todoList, setTodoList] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     new Promise((resolve, reject) => {
@@ -32,8 +33,11 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    localStorage.setItem('savedTodoList', JSON.stringify(todoList));
-  }, [todoList]);
+    if (!isLoading) {
+      localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+    }
+  }, [todoList, isLoading]);
+
   const [removedTodo, setRemovedTodo] = React.useState(null);
 
   const addTodo = (newTodo) => {
