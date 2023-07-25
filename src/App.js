@@ -66,6 +66,7 @@ function App() {
       <p>
         New thing to do is <strong>{lastAddedTodo}</strong>
       </p>
+      <p>Loading...</p>
       <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
     </>
   );
