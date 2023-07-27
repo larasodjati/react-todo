@@ -16,20 +16,34 @@ const useSemiPersistentState = () => {
 
 function App() {
   const [todoList, setTodoList] = useSemiPersistentState();
+  const [removedTodo, setRemovedTodo] = React.useState(null);
 
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
   };
   const lastAddedTodo =
     todoList.length > 0 ? todoList[todoList.length - 1].title : '';
+
+  const removeTodo = (id) => {
+    const updatedTodoList = todoList.filter((todo) => todo.id !== id);
+    setTodoList(updatedTodoList);
+
+    const removedItem = todoList.find((todo) => todo.id === id);
+    setRemovedTodo(removedItem);
+  };
   return (
     <>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
+      {removedTodo && (
+        <p>
+          <strong>{removedTodo.title}</strong> has been removed.
+        </p>
+      )}
       <p>
         New thing to do is <strong>{lastAddedTodo}</strong>
       </p>
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
     </>
   );
 }
