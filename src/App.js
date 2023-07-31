@@ -17,6 +17,10 @@ function App() {
 
     try {
       const response = await fetch(url, options);
+      if (!response.ok) {
+        const message = `Error: ${response.status}`;
+        throw new Error(message);
+      }
     } catch {}
   };
 
