@@ -22,7 +22,6 @@ function App() {
         throw new Error(message);
       }
       const data = await response.json();
-      console.log(data);
 
       const todos = data.records.map((todo) => {
         const newTodo = {
@@ -31,7 +30,6 @@ function App() {
         };
         return newTodo;
       });
-      console.log(todos);
     } catch {}
   };
 
