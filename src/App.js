@@ -57,6 +57,9 @@ function App() {
       body: JSON.stringify(postTodos)
     };
     const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`;
+
+    try {
+    } catch {}
   };
   React.useEffect(() => {
     if (!isLoading) {
