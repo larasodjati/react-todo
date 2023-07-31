@@ -64,6 +64,8 @@ function App() {
         const message = `Error has occured : ${response.status}`;
         throw new Error(message);
       }
+      const data = await response.json();
+      return data;
     } catch {}
   };
   React.useEffect(() => {
