@@ -32,7 +32,9 @@ function App() {
       });
       setTodoList(todos);
       setIsLoading(false);
-    } catch {}
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   React.useEffect(() => {
