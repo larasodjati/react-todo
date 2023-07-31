@@ -61,7 +61,7 @@ function App() {
     try {
       const response = await fetch(url, options);
       if (!response.ok) {
-        const message = `Error has occured : ${response.status}`;
+        const message = `Error has occurred : ${response.status}`;
         throw new Error(message);
       }
       const data = await response.json();
