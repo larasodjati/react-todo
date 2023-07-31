@@ -30,6 +30,7 @@ function App() {
         };
         return newTodo;
       });
+      setTodoList(todos);
     } catch {}
   };
 
