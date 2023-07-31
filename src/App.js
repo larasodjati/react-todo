@@ -60,6 +60,10 @@ function App() {
 
     try {
       const response = await fetch(url, options);
+      if (!response.ok) {
+        const message = `Error has occured : ${response.status}`;
+        throw new Error(message);
+      }
     } catch {}
   };
   React.useEffect(() => {
