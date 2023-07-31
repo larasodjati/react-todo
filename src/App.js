@@ -31,6 +31,7 @@ function App() {
         return newTodo;
       });
       setTodoList(todos);
+      setIsLoading(false);
     } catch {}
   };
 
