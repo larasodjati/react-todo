@@ -47,6 +47,15 @@ function App() {
         title: todo.title
       }
     };
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+      },
+      body: JSON.stringify(postTodos)
+    };
   };
   React.useEffect(() => {
     if (!isLoading) {
