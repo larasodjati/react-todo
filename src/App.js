@@ -23,6 +23,15 @@ function App() {
       }
       const data = await response.json();
       console.log(data);
+
+      const todos = data.records.map((todo) => {
+        const newTodo = {
+          id: todo.id,
+          title: todo.fields.title
+        };
+        return newTodo;
+      });
+      console.log(todos);
     } catch {}
   };
 
