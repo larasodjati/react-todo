@@ -66,7 +66,10 @@ function App() {
       }
       const data = await response.json();
       return data;
-    } catch {}
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
   };
   React.useEffect(() => {
     if (!isLoading) {
