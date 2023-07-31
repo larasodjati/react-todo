@@ -14,6 +14,9 @@ function App() {
       }
     };
     const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+
+    try {
+    } catch {}
   };
 
   React.useEffect(() => {
