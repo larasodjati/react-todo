@@ -41,7 +41,13 @@ function App() {
     fetchData();
   }, []);
 
-  const postTodo = async (todo) => {};
+  const postTodo = async (todo) => {
+    const postTodos = {
+      fields: {
+        title: todo.title
+      }
+    };
+  };
   React.useEffect(() => {
     if (!isLoading) {
       localStorage.setItem('savedTodoList', JSON.stringify(todoList));
