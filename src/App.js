@@ -21,6 +21,8 @@ function App() {
         const message = `Error: ${response.status}`;
         throw new Error(message);
       }
+      const data = await response.json();
+      console.log(data);
     } catch {}
   };
 
