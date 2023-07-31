@@ -81,6 +81,7 @@ function App() {
 
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
+    postTodo(newTodo);
   };
   const lastAddedTodo =
     todoList.length > 0 ? todoList[todoList.length - 1].title : '';
