@@ -59,6 +59,7 @@ function App() {
     const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`;
 
     try {
+      const response = await fetch(url, options);
     } catch {}
   };
   React.useEffect(() => {
