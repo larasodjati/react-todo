@@ -96,21 +96,23 @@ function App() {
   };
   return (
     <BrowserRouter>
-      <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={addTodo} />
-      {removedTodo && (
+      <Routes>
+        <h1>Todo List</h1>
+        <AddTodoForm onAddTodo={addTodo} />
+        {removedTodo && (
+          <p>
+            <strong>{removedTodo.title}</strong> has been removed.
+          </p>
+        )}
         <p>
-          <strong>{removedTodo.title}</strong> has been removed.
+          New thing to do is <strong>{lastAddedTodo}</strong>
         </p>
-      )}
-      <p>
-        New thing to do is <strong>{lastAddedTodo}</strong>
-      </p>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+        )}
+      </Routes>
     </BrowserRouter>
   );
 }
