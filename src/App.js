@@ -119,6 +119,7 @@ function App() {
             </>
           }
         ></Route>
+        <Route path="/new"></Route>
       </Routes>
     </BrowserRouter>
   );
