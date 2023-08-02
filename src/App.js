@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
@@ -94,7 +95,7 @@ function App() {
     setRemovedTodo(removedItem);
   };
   return (
-    <>
+    <BrowserRouter>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
       {removedTodo && (
@@ -110,7 +111,7 @@ function App() {
       ) : (
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       )}
-    </>
+    </BrowserRouter>
   );
 }
 
