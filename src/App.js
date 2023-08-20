@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
@@ -94,23 +95,33 @@ function App() {
     setRemovedTodo(removedItem);
   };
   return (
-    <>
-      <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={addTodo} />
-      {removedTodo && (
-        <p>
-          <strong>{removedTodo.title}</strong> has been removed.
-        </p>
-      )}
-      <p>
-        New thing to do is <strong>{lastAddedTodo}</strong>
-      </p>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <h1>Todo List</h1>
+              <AddTodoForm onAddTodo={addTodo} />
+              {removedTodo && (
+                <p>
+                  <strong>{removedTodo.title}</strong> has been removed.
+                </p>
+              )}
+              <p>
+                New thing to do is <strong>{lastAddedTodo}</strong>
+              </p>
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+              )}
+            </>
+          }
+        />
+        <Route path="/new" element={<h1>New Todo List</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
