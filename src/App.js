@@ -12,8 +12,6 @@ const apiBaseUrl = `https://api.airtable.com/v0/${REACT_APP_AIRTABLE_BASE_ID}/${
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [editingTodoId, setEditingTodoId] = useState(null);
-  const [editedTodoTitle, setEditedTodoTitle] = useState('');
   const [removedTodo, setRemovedTodo] = useState(null);
 
   const fetchAndCheckResponse = async (url, options) => {
@@ -85,20 +83,13 @@ function App() {
     }
   }, [todoList, isLoading]);
 
-  const addTodo = (newTodo) => {
-    setTodoList([...todoList, newTodo]);
-    postTodo(newTodo);
+  const addTodo = async (newTodo) => {
+    const addedTodo = await postTodo(newTodo);
+    if (addedTodo) {
+      setTodoList([...todoList, newTodo]);
+    }
   };
 
-  const editTodo = async (id, title) => {
-    const editedTodo = todoList.find((todo) => todo.id === id);
-    editedTodo.title = title;
-    setEditingTodoId(null);
-    setEditedTodoTitle('');
-
-    const updatedEditTodoList = [...todoList];
-    setTodoList(updatedEditTodoList);
-  };
   const removeTodo = async (id) => {
     const removedItem = todoList.find((todo) => todo.id === id);
     setRemovedTodo(removedItem);
@@ -146,11 +137,7 @@ function App() {
               {isLoading ? (
                 <p>Loading...</p>
               ) : (
-                <TodoList
-                  todoList={todoList}
-                  onEditTodo={editTodo}
-                  onRemoveTodo={removeTodo}
-                />
+                <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
               )}
             </>
           }
