@@ -88,12 +88,28 @@ function App() {
     postTodo(newTodo);
   };
 
-  const removeTodo = (id) => {
+  const removeTodo = async (id) => {
+    const removedItem = todoList.find((todo) => todo.id === id);
+    setRemovedTodo(removedItem);
+
     const updatedTodoList = todoList.filter((todo) => todo.id !== id);
     setTodoList(updatedTodoList);
 
-    const removedItem = todoList.find((todo) => todo.id === id);
-    setRemovedTodo(removedItem);
+    const deleteOptions = {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
+      }
+    };
+    const deleteUrl = `${apiBaseUrl}/${id}`;
+    try {
+      const response = await fetch(deleteUrl, deleteOptions);
+      if (!response.ok) {
+        throw new Error(`Error deleting todo item: ${response.status}`);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const lastAddedTodo =
