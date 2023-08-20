@@ -14,6 +14,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [removedTodo, setRemovedTodo] = useState(null);
 
+  const fetchAndCheckResponse = async (url, options) => {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      const message = `Error: ${response.status}`;
+      throw new Error(message);
+    }
+    return await response.json();
+  };
+
   const fetchData = async () => {
     const options = {
       method: 'GET',
@@ -24,13 +33,7 @@ function App() {
     const url = `${apiBaseUrl}`;
 
     try {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        const message = `Error: ${response.status}`;
-        throw new Error(message);
-      }
-      const data = await response.json();
-
+      const data = await fetchAndCheckResponse(url, options);
       const todos = data.records.map((todo) => {
         const newTodo = {
           id: todo.id,
@@ -47,7 +50,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const postTodo = async (todo) => {
     const postTodos = {
@@ -67,12 +70,7 @@ function App() {
     const url = `${apiBaseUrl}`;
 
     try {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        const message = `Error has occurred : ${response.status}`;
-        throw new Error(message);
-      }
-      const data = await response.json();
+      const data = await fetchAndCheckResponse(url, options);
       return data;
     } catch (error) {
       console.log(error.message);
