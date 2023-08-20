@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
+const REACT_APP_AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
+const REACT_APP_AIRTABLE_BASE_ID = process.env.REACT_APP_AIRTABLE_BASE_ID;
+const REACT_APP_TABLE_NAME = process.env.REACT_APP_TABLE_NAME;
+
+const apiBaseUrl = `https://api.airtable.com/v0/${REACT_APP_AIRTABLE_BASE_ID}/${REACT_APP_TABLE_NAME}`;
+
 function App() {
-  const [todoList, setTodoList] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [removedTodo, setRemovedTodo] = React.useState(null);
+  const [todoList, setTodoList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [removedTodo, setRemovedTodo] = useState(null);
 
   const fetchData = async () => {
     const options = {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+        Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
       }
     };
-    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+    const url = `${apiBaseUrl}`;
 
     try {
       const response = await fetch(url, options);
@@ -39,7 +45,7 @@ function App() {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -54,11 +60,11 @@ function App() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+        Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
       },
       body: JSON.stringify(postTodos)
     };
-    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+    const url = `${apiBaseUrl}`;
 
     try {
       const response = await fetch(url, options);
@@ -73,7 +79,7 @@ function App() {
       return null;
     }
   };
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isLoading) {
       localStorage.setItem('savedTodoList', JSON.stringify(todoList));
     }
@@ -83,8 +89,6 @@ function App() {
     setTodoList([...todoList, newTodo]);
     postTodo(newTodo);
   };
-  const lastAddedTodo =
-    todoList.length > 0 ? todoList[todoList.length - 1].title : '';
 
   const removeTodo = (id) => {
     const updatedTodoList = todoList.filter((todo) => todo.id !== id);
@@ -93,6 +97,10 @@ function App() {
     const removedItem = todoList.find((todo) => todo.id === id);
     setRemovedTodo(removedItem);
   };
+
+  const lastAddedTodo =
+    todoList.length > 0 ? todoList[todoList.length - 1].title : '';
+
   return (
     <BrowserRouter>
       <Routes>
