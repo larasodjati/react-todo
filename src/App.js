@@ -114,6 +114,41 @@ function App() {
     }
   };
 
+  const updateTodo = async (id, newTitle) => {
+    const updateTodos = {
+      fields: {
+        title: newTitle
+      }
+    };
+
+    const options = {
+      method: 'PATCH', // Use PATCH to update existing records
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
+      },
+      body: JSON.stringify(updateTodos)
+    };
+
+    const updateUrl = `${apiBaseUrl}/${id}`;
+
+    try {
+      await fetchAndCheckResponse(updateUrl, options);
+      // Update the local todoList with the updated data
+      const updatedTodoList = todoList.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            title: newTitle
+          };
+        }
+        return todo;
+      });
+      setTodoList(updatedTodoList);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   const lastAddedTodo =
     todoList.length > 0 ? todoList[todoList.length - 1].title : '';
 
@@ -137,7 +172,11 @@ function App() {
               {isLoading ? (
                 <p>Loading...</p>
               ) : (
-                <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+                <TodoList
+                  todoList={todoList}
+                  onRemoveTodo={removeTodo}
+                  onUpdateTodo={updateTodo}
+                />
               )}
             </>
           }
