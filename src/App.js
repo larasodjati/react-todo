@@ -13,6 +13,8 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [removedTodo, setRemovedTodo] = useState(null);
+  const [editingTodo, setEditingTodo] = useState(null);
+  const [editedTodo, setEditedTodo] = useState('');
 
   const fetchAndCheckResponse = async (url, options) => {
     const response = await fetch(url, options);
