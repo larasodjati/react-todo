@@ -6,6 +6,7 @@ import TodoList from './TodoList';
 function App() {
   const [todoList, setTodoList] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [removedTodo, setRemovedTodo] = React.useState(null);
 
   const fetchData = async () => {
     const options = {
@@ -57,7 +58,7 @@ function App() {
       },
       body: JSON.stringify(postTodos)
     };
-    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`;
+    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
 
     try {
       const response = await fetch(url, options);
@@ -77,8 +78,6 @@ function App() {
       localStorage.setItem('savedTodoList', JSON.stringify(todoList));
     }
   }, [todoList, isLoading]);
-
-  const [removedTodo, setRemovedTodo] = React.useState(null);
 
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
