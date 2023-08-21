@@ -18,4 +18,14 @@ function TodoList({ todoList, onRemoveTodo, onUpdateTodo }) {
   );
 }
 
+TodoList.propTypes = {
+  todoList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string
+    })
+  ),
+  onRemoveTodo: PropTypes.func,
+  onUpdateTodo: PropTypes.func
+};
 export default TodoList;
