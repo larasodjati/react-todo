@@ -17,6 +17,10 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
     setIsEditing(false);
   };
 
+  const handleCancelClick = () => {
+    setNewTitle(todo.title);
+    setIsEditing(false);
+  };
   const handleTitleChange = (e) => {
     setNewTitle(e.target.value);
   };
@@ -26,6 +30,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
       {isEditing ? (
         <div>
           <input type="text" value={newTitle} onChange={handleTitleChange} />
+          <button onClick={handleCancelClick}>Cancel</button>
           <button onClick={handleSaveClick}>Save</button>
         </div>
       ) : (
