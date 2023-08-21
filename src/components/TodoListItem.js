@@ -47,7 +47,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
 
 TodoListItem.propTypes = {
   todo: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     title: PropTypes.string
   }),
   onRemoveTodo: PropTypes.func,
