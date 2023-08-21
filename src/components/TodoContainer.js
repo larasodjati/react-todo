@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'prop-types';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
