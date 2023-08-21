@@ -137,7 +137,7 @@ function TodoContainer({ tableName }) {
     todoList.length > 0 ? todoList[todoList.length - 1].title : '';
   return (
     <>
-      <h1>Todo List for {tableName}</h1>
+      <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
       {removedTodo && (
         <p>

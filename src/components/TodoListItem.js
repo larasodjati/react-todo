@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -21,8 +22,8 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
     setNewTitle(todo.title);
     setIsEditing(false);
   };
-  const handleTitleChange = (e) => {
-    setNewTitle(e.target.value);
+  const handleTitleChange = (event) => {
+    setNewTitle(event.target.value);
   };
 
   return (
@@ -44,4 +45,12 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   );
 }
 
+TodoListItem.propTypes = {
+  todo: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string
+  }),
+  onRemoveTodo: PropTypes.func,
+  onUpdateTodo: PropTypes.func
+};
 export default TodoListItem;
