@@ -22,7 +22,7 @@ function TodoList({ todoList, onRemoveTodo, onUpdateTodo }) {
 TodoList.propTypes = {
   todoList: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       title: PropTypes.string
     })
   ),

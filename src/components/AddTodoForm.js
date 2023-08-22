@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import InputWithLabel from './InputWithLabel';
 
 function AddTodoForm({ onAddTodo }) {
@@ -9,6 +9,7 @@ function AddTodoForm({ onAddTodo }) {
     const newTodoTitle = event.target.value;
     setTodoTitle(newTodoTitle);
   };
+
   const handleAddTodo = (event) => {
     event.preventDefault();
     if (todoTitle.trim() !== '') {

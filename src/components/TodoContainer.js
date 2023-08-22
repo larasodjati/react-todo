@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
@@ -15,6 +15,7 @@ function TodoContainer({ tableName }) {
 
   const fetchAndCheckResponse = async (url, options) => {
     const response = await fetch(url, options);
+    console.log('API Response:', response);
     if (!response.ok) {
       const message = `Error: ${response.status}`;
       throw new Error(message);
@@ -30,7 +31,7 @@ function TodoContainer({ tableName }) {
           Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
         }
       };
-      const url = `${apiBaseUrl}`;
+      const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
 
       try {
         const data = await fetchAndCheckResponse(url, options);
@@ -47,13 +48,26 @@ function TodoContainer({ tableName }) {
     };
     fetchData();
   }, [tableName, REACT_APP_AIRTABLE_API_KEY, apiBaseUrl]);
+  console.log(tableName);
 
-  const addTodo = async (title) => {
+  useEffect(() => {
+    if (!isLoading) {
+      try {
+        console.log(todoList);
+        localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+      } catch (error) {
+        console.error('Error saving todoList to local storage:', error);
+      }
+    }
+  }, [todoList, isLoading]);
+
+  const addTodo = async (todo) => {
     const newRecord = {
       fields: {
-        title: title
+        title: todo.title
       }
     };
+
     const options = {
       method: 'POST',
       headers: {
@@ -66,7 +80,15 @@ function TodoContainer({ tableName }) {
 
     try {
       const data = await fetchAndCheckResponse(url, options);
-      setTodoList([...todoList, data]);
+      console.log('API Response:', data);
+      if (data) {
+        const newTodoList = [...todoList, data];
+        console.log('newtodolist:', newTodoList);
+        setTodoList(newTodoList);
+        console.log('Updated todoList:', newTodoList);
+      } else {
+        console.error('Empty response received from the API.');
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -80,7 +102,7 @@ function TodoContainer({ tableName }) {
     };
 
     const options = {
-      method: 'PATCH', // Use PATCH to update existing records
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
@@ -160,7 +182,7 @@ function TodoContainer({ tableName }) {
   );
 }
 TodoContainer.propTypes = {
-  tableName: PropTypes.string
+  tableName: PropTypes.string.isRequired
 };
 
 export default TodoContainer;
