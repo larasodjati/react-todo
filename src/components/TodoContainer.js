@@ -15,7 +15,6 @@ function TodoContainer({ tableName }) {
 
   const fetchAndCheckResponse = async (url, options) => {
     const response = await fetch(url, options);
-    console.log('API Response:', response);
     if (!response.ok) {
       const message = `Error: ${response.status}`;
       throw new Error(message);
@@ -23,74 +22,68 @@ function TodoContainer({ tableName }) {
     return await response.json();
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const options = {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
-        }
-      };
-      const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
-
-      try {
-        const data = await fetchAndCheckResponse(url, options);
-        const todos = data.records.map((todo) => ({
-          id: todo.id,
-          title: todo.fields.title
-        }));
-
-        setTodoList(todos);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.message);
+  const fetchData = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
       }
     };
-    fetchData();
-  }, [tableName, REACT_APP_AIRTABLE_API_KEY, apiBaseUrl]);
-  console.log(tableName);
+    const url = `${apiBaseUrl}`;
+    try {
+      const data = await fetchAndCheckResponse(url, options);
+      const todos = data.records.map((todo) => {
+        const newTodo = {
+          id: todo.id,
+          title: todo.fields.title
+        };
+        return newTodo;
+      });
+      setTodoList(todos);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // eslint-disable-next-line
+  }, [tableName]);
 
   useEffect(() => {
     if (!isLoading) {
-      try {
-        console.log(todoList);
-        localStorage.setItem('savedTodoList', JSON.stringify(todoList));
-      } catch (error) {
-        console.error('Error saving todoList to local storage:', error);
-      }
+      localStorage.setItem('savedTodoList', JSON.stringify(todoList));
     }
   }, [todoList, isLoading]);
 
-  const addTodo = async (todo) => {
-    const newRecord = {
+  const postTodo = async (todo) => {
+    const postTodos = {
       fields: {
         title: todo.title
       }
     };
-
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
       },
-      body: JSON.stringify(newRecord)
+      body: JSON.stringify(postTodos)
     };
     const url = `${apiBaseUrl}`;
-
     try {
       const data = await fetchAndCheckResponse(url, options);
-      console.log('API Response:', data);
-      if (data) {
-        const newTodoList = [...todoList, data];
-        console.log('newtodolist:', newTodoList);
-        setTodoList(newTodoList);
-        console.log('Updated todoList:', newTodoList);
-      } else {
-        console.error('Empty response received from the API.');
-      }
+      return data;
     } catch (error) {
       console.log(error.message);
+      return null;
+    }
+  };
+  // wrapper function for postTodo
+  const addTodo = async (newTodo) => {
+    const addedTodo = await postTodo(newTodo);
+    if (addedTodo) {
+      setTodoList([...todoList, newTodo]);
     }
   };
 
