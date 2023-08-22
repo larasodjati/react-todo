@@ -89,10 +89,11 @@ function TodoContainer({ tableName }) {
     }
   };
 
-  const updateTodo = async (id, newTitle) => {
+  const updateTodo = async (id, newTitle, newPriority) => {
     const updateTodos = {
       fields: {
-        title: newTitle
+        title: newTitle,
+        priority: newPriority
       }
     };
 
@@ -114,7 +115,8 @@ function TodoContainer({ tableName }) {
         if (todo.id === id) {
           return {
             ...todo,
-            title: newTitle
+            title: newTitle,
+            priority: newPriority
           };
         }
         return todo;

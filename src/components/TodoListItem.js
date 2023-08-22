@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(todo.title);
+  const [newPriority, setNewPriority] = useState(todo.priority);
 
   const handleRemoveTodo = () => {
     onRemoveTodo(todo.id);
@@ -14,16 +15,21 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   };
 
   const handleSaveClick = () => {
-    onUpdateTodo(todo.id, newTitle);
+    onUpdateTodo(todo.id, newTitle, newPriority);
     setIsEditing(false);
   };
 
   const handleCancelClick = () => {
     setNewTitle(todo.title);
+    setNewPriority(todo.priority);
     setIsEditing(false);
   };
   const handleTitleChange = (event) => {
     setNewTitle(event.target.value);
+  };
+
+  const handlePriorityChange = (event) => {
+    setNewPriority(event.target.value);
   };
 
   return (
@@ -31,13 +37,18 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
       {isEditing ? (
         <div>
           <input type="text" value={newTitle} onChange={handleTitleChange} />
+          <select value={newPriority} onChange={handlePriorityChange}>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
           <button onClick={handleCancelClick}>Cancel</button>
           <button onClick={handleSaveClick}>Save</button>
         </div>
       ) : (
         <div>
           <li>{todo.title}</li>
-          <div>Priotity: {todo.priority}</div>
+          <div>Priority: {todo.priority}</div>
           <button onClick={handleEditClick}>Edit</button>
           <button onClick={handleRemoveTodo}>Remove</button>
         </div>
