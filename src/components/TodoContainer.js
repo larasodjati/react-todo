@@ -7,6 +7,7 @@ function TodoContainer({ tableName }) {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [removedTodo, setRemovedTodo] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const REACT_APP_AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
   const REACT_APP_AIRTABLE_BASE_ID = process.env.REACT_APP_AIRTABLE_BASE_ID;
@@ -154,10 +155,29 @@ function TodoContainer({ tableName }) {
 
   const lastAddedTodo =
     todoList.length > 0 ? todoList[todoList.length - 1].title : '';
+
+  // handle search
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredTodoList = todoList.filter((todo) =>
+    todo.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <>
       <h1>Todo List</h1>
+      <>
+        <input
+          type="text"
+          placeholder="Search todos"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </>
+
       <AddTodoForm onAddTodo={addTodo} />
+
       {removedTodo && (
         <p>
           <strong>{removedTodo.title}</strong> has been removed.
@@ -170,7 +190,7 @@ function TodoContainer({ tableName }) {
         <p>Loading...</p>
       ) : (
         <TodoList
-          todoList={todoList}
+          todoList={filteredTodoList}
           onRemoveTodo={removeTodo}
           onUpdateTodo={updateTodo}
         />
