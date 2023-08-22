@@ -37,6 +37,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
       ) : (
         <div>
           <li>{todo.title}</li>
+          <div>Priotity: {todo.priority}</div>
           <button onClick={handleEditClick}>Edit</button>
           <button onClick={handleRemoveTodo}>Remove</button>
         </div>

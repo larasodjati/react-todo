@@ -35,7 +35,8 @@ function TodoContainer({ tableName }) {
       const todos = data.records.map((todo) => {
         const newTodo = {
           id: todo.id,
-          title: todo.fields.title
+          title: todo.fields.title,
+          priority: todo.fields.priority
         };
         return newTodo;
       });
@@ -47,8 +48,8 @@ function TodoContainer({ tableName }) {
   };
 
   useEffect(() => {
-    fetchData(); // eslint-disable-next-line
-  }, [tableName]);
+    fetchData();
+  }, [tableName]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!isLoading) {
@@ -59,7 +60,8 @@ function TodoContainer({ tableName }) {
   const postTodo = async (todo) => {
     const postTodos = {
       fields: {
-        title: todo.title
+        title: todo.title,
+        priority: todo.priority
       }
     };
     const options = {
