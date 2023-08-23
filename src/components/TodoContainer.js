@@ -37,7 +37,9 @@ function TodoContainer({ tableName }) {
         const newTodo = {
           id: todo.id,
           title: todo.fields.title,
-          priority: todo.fields.priority
+          priority: todo.fields.priority,
+          completed: todo.fields.completed || false, // set default to false
+          completedAt: todo.fields.completedAt || null // set default to null
         };
         return newTodo;
       });
@@ -90,11 +92,19 @@ function TodoContainer({ tableName }) {
     }
   };
 
-  const updateTodo = async (id, newTitle, newPriority) => {
+  const updateTodo = async (
+    id,
+    newTitle,
+    newPriority,
+    newCompleted,
+    newCompletedAt
+  ) => {
     const updateTodos = {
       fields: {
         title: newTitle,
-        priority: newPriority
+        priority: newPriority,
+        completed: newCompleted,
+        completedAt: newCompletedAt
       }
     };
 
@@ -117,14 +127,16 @@ function TodoContainer({ tableName }) {
           return {
             ...todo,
             title: newTitle,
-            priority: newPriority
+            priority: newPriority,
+            completed: newCompleted,
+            completedAt: newCompletedAt
           };
         }
         return todo;
       });
       setTodoList(updatedTodoList);
     } catch (error) {
-      console.log(error.message);
+      console.log('Error updating todo:', error);
     }
   };
 

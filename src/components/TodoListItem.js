@@ -5,6 +5,8 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(todo.title);
   const [newPriority, setNewPriority] = useState(todo.priority);
+  const [completed, setCompleted] = useState(todo.completed || false);
+  const [completedAt, setCompletedAt] = useState(todo.completedAt || null);
 
   const handleRemoveTodo = () => {
     onRemoveTodo(todo.id);
@@ -15,7 +17,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   };
 
   const handleSaveClick = () => {
-    onUpdateTodo(todo.id, newTitle, newPriority);
+    onUpdateTodo(todo.id, newTitle, newPriority, completed, completedAt);
     setIsEditing(false);
   };
 
@@ -32,6 +34,16 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
     setNewPriority(event.target.value);
   };
 
+  const handleCompletedToggle = () => {
+    const newCompletedAt = new Date().toISOString();
+    setCompleted(!completed);
+    if (!completed) {
+      setCompletedAt(newCompletedAt); // set to current time if marking as completed
+    } else {
+      setCompletedAt(null);
+    }
+  };
+
   return (
     <div>
       {isEditing ? (
@@ -42,13 +54,37 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
             <option value="Medium">Medium</option>
             <option value="Low">Low</option>
           </select>
+
+          <label>
+            Completed:
+            <input
+              type="checkbox"
+              checked={completed}
+              onChange={handleCompletedToggle}
+            />
+          </label>
           <button onClick={handleCancelClick}>Cancel</button>
           <button onClick={handleSaveClick}>Save</button>
         </div>
       ) : (
         <div>
-          <li>{todo.title}</li>
+          <label>
+            <input
+              type="checkbox"
+              checked={completed}
+              onChange={handleCompletedToggle}
+            />
+            {todo.title}
+          </label>
           <div>Priority: {todo.priority}</div>
+          <div>
+            {completed && completedAt && (
+              <div>
+                Completed At: {new Date(completedAt).toLocaleDateString()}
+              </div>
+            )}
+          </div>
+
           <button onClick={handleEditClick}>Edit</button>
           <button onClick={handleRemoveTodo}>Remove</button>
         </div>
@@ -60,7 +96,10 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
 TodoListItem.propTypes = {
   todo: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    title: PropTypes.string
+    title: PropTypes.string,
+    priority: PropTypes.string,
+    completed: PropTypes.bool,
+    completedAt: PropTypes.string
   }),
   onRemoveTodo: PropTypes.func,
   onUpdateTodo: PropTypes.func
