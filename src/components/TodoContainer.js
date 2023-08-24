@@ -38,6 +38,7 @@ function TodoContainer({ tableName }) {
           id: todo.id,
           title: todo.fields.title,
           priority: todo.fields.priority,
+          category: todo.fields.category,
           completed: todo.fields.completed || false, // set default to false
           completedAt: todo.fields.completedAt || null // set default to null
         };
@@ -64,7 +65,8 @@ function TodoContainer({ tableName }) {
     const postTodos = {
       fields: {
         title: todo.title,
-        priority: todo.priority
+        priority: todo.priority,
+        category: todo.category
       }
     };
     const options = {
@@ -96,6 +98,7 @@ function TodoContainer({ tableName }) {
     id,
     newTitle,
     newPriority,
+    newCategory,
     newCompleted,
     newCompletedAt
   ) => {
@@ -103,6 +106,7 @@ function TodoContainer({ tableName }) {
       fields: {
         title: newTitle,
         priority: newPriority,
+        category: newCategory,
         completed: newCompleted,
         completedAt: newCompletedAt
       }
@@ -128,6 +132,7 @@ function TodoContainer({ tableName }) {
             ...todo,
             title: newTitle,
             priority: newPriority,
+            category: newCategory,
             completed: newCompleted,
             completedAt: newCompletedAt
           };

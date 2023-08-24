@@ -5,6 +5,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(todo.title);
   const [newPriority, setNewPriority] = useState(todo.priority);
+  const [newCategory, setNewCategory] = useState(todo.category);
   const [completed, setCompleted] = useState(todo.completed || false);
   const [completedAt, setCompletedAt] = useState(todo.completedAt || null);
 
@@ -17,13 +18,14 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   };
 
   const handleUpdateClick = () => {
-    onUpdateTodo(todo.id, newTitle, newPriority);
+    onUpdateTodo(todo.id, newTitle, newPriority, newCategory);
     setIsEditing(false);
   };
 
   const handleCancelClick = () => {
     setNewTitle(todo.title);
     setNewPriority(todo.priority);
+    setNewCategory(todo.category);
     setIsEditing(false);
   };
   const handleTitleChange = (event) => {
@@ -32,6 +34,10 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
 
   const handlePriorityChange = (event) => {
     setNewPriority(event.target.value);
+  };
+
+  const handleCategoryChange = (event) => {
+    setNewCategory(event.target.value);
   };
 
   const handleCompletedToggle = () => {
@@ -50,11 +56,20 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
         <div>
           <input type="text" value={newTitle} onChange={handleTitleChange} />
           <select value={newPriority} onChange={handlePriorityChange}>
+            <option value="">Select Priority</option>
             <option value="High">High</option>
             <option value="Medium">Medium</option>
             <option value="Low">Low</option>
           </select>
 
+          <select value={newCategory} onChange={handleCategoryChange}>
+            <option value="">Select Category</option>
+            <option value="All">All</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Wishlist">Wishlist</option>
+          </select>
           <label>
             Completed:
             <input
@@ -77,6 +92,9 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
             {todo.title}
           </label>
           <div>Priority: {todo.priority}</div>
+
+          <div>Category: {todo.category}</div>
+
           <div>
             {completed && completedAt && (
               <div>
