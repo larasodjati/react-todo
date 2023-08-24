@@ -16,8 +16,8 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
     setIsEditing(true);
   };
 
-  const handleSaveClick = () => {
-    onUpdateTodo(todo.id, newTitle, newPriority, completed, completedAt);
+  const handleUpdateClick = () => {
+    onUpdateTodo(todo.id, newTitle, newPriority);
     setIsEditing(false);
   };
 
@@ -64,7 +64,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
             />
           </label>
           <button onClick={handleCancelClick}>Cancel</button>
-          <button onClick={handleSaveClick}>Save</button>
+          <button onClick={handleUpdateClick}>Update</button>
         </div>
       ) : (
         <div>
@@ -84,7 +84,6 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
               </div>
             )}
           </div>
-
           <button onClick={handleEditClick}>Edit</button>
           <button onClick={handleRemoveTodo}>Remove</button>
         </div>
