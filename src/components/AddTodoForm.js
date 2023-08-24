@@ -24,11 +24,12 @@ function AddTodoForm({ onAddTodo }) {
   const handleAddTodo = (event) => {
     event.preventDefault();
     if (todoTitle.trim() !== '') {
+      const selectedCategory = todoCategory || 'All'; // default to All if no category selected
       onAddTodo({
         id: Date.now(),
         title: todoTitle,
         priority: todoPriority,
-        category: todoCategory
+        category: selectedCategory
       });
       console.log(todoTitle);
       setTodoTitle('');
@@ -54,7 +55,7 @@ function AddTodoForm({ onAddTodo }) {
           <option value="Low">Low</option>
         </select>
 
-        <label>category:</label>
+        <label>Category:</label>
         <select value={todoCategory} onChange={handleCategoryChange}>
           <option value="">Select Category</option>
           <option value="All">All</option>

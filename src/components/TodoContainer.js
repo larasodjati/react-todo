@@ -8,6 +8,7 @@ function TodoContainer({ tableName }) {
   const [isLoading, setIsLoading] = useState(true);
   const [removedTodo, setRemovedTodo] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const REACT_APP_AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
   const REACT_APP_AIRTABLE_BASE_ID = process.env.REACT_APP_AIRTABLE_BASE_ID;
@@ -88,9 +89,10 @@ function TodoContainer({ tableName }) {
   };
   // wrapper function for postTodo
   const addTodo = async (newTodo) => {
+    newTodo.category = selectedCategory;
     const addedTodo = await postTodo(newTodo);
     if (addedTodo) {
-      setTodoList([...todoList, newTodo]);
+      setTodoList([...todoList, { ...newTodo }]);
     }
   };
 
@@ -178,9 +180,15 @@ function TodoContainer({ tableName }) {
     setSearchTerm(event.target.value);
   };
 
-  const filteredTodoList = todoList.filter((todo) =>
-    todo.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredTodoList = todoList.filter((todo) => {
+    const matchCategory =
+      selectedCategory === 'All' || todo.category === selectedCategory;
+    const matchSearchTerm = todo.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    return matchCategory && matchSearchTerm;
+  });
+
   return (
     <>
       <h1>Todo List</h1>
@@ -192,6 +200,41 @@ function TodoContainer({ tableName }) {
           onChange={handleSearch}
         />
       </>
+
+      <nav>
+        <ul>
+          <li
+            className={selectedCategory === 'All' ? 'active' : ''}
+            onClick={() => setSelectedCategory('All')}
+          >
+            All
+          </li>
+          <li
+            className={selectedCategory === 'Work' ? 'active' : ''}
+            onClick={() => setSelectedCategory('Work')}
+          >
+            Work
+          </li>
+          <li
+            className={selectedCategory === 'Personal' ? 'active' : ''}
+            onClick={() => setSelectedCategory('Personal')}
+          >
+            Personal
+          </li>
+          <li
+            className={selectedCategory === 'Birthday' ? 'active' : ''}
+            onClick={() => setSelectedCategory('Birthday')}
+          >
+            Birthday
+          </li>
+          <li
+            className={selectedCategory === 'Wishlist' ? 'active' : ''}
+            onClick={() => setSelectedCategory('Wishlist')}
+          >
+            Wishlist
+          </li>
+        </ul>
+      </nav>
 
       <AddTodoForm onAddTodo={addTodo} />
 
