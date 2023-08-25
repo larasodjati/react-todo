@@ -93,8 +93,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
   };
   // wrapper function for postTodo
   const addTodo = async (newTodo) => {
-    newTodo.category = selectedCategory || 'All';
-    console.log('Selected Category:', selectedCategory);
+    newTodo.category = newTodo.category || selectedCategory || 'All';
     const addedTodo = await postTodo(newTodo);
     if (addedTodo) {
       setTodoList([...todoList, { ...newTodo }]);
@@ -198,6 +197,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
   return (
     <>
       <h1>Todo List</h1>
+      <CategoryTabs />
       <>
         <input
           type="text"
@@ -206,12 +206,15 @@ function TodoContainer({ tableName, isAddTodoForm }) {
           onChange={handleSearch}
         />
       </>
-      <CategoryTabs />
+
       <Link to="/add">
         <button>Add New Todo</button>
       </Link>
       {isAddTodoForm && (
-        <AddTodoForm onAddTodo={addTodo} selectedCategory={selectedCategory} />
+        <AddTodoForm
+          onAddTodo={addTodo}
+          selectedCategory={selectedCategory || 'All'}
+        />
       )}
 
       {removedTodo && (

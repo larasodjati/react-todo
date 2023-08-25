@@ -8,7 +8,7 @@ function AddTodoForm({ onAddTodo }) {
 
   const [todoTitle, setTodoTitle] = useState('');
   const [todoPriority, setTodoPriority] = useState('');
-  const [todoCategory, setTodoCategory] = useState('null');
+  const [todoCategory, setTodoCategory] = useState('');
 
   const handleTitleChange = (event) => {
     const newTodoTitle = event.target.value;
@@ -23,18 +23,15 @@ function AddTodoForm({ onAddTodo }) {
   const handleCategoryChange = (event) => {
     const newTodoCategory = event.target.value;
     setTodoCategory(newTodoCategory);
-    console.log('Category changed:', newTodoCategory);
   };
   const handleAddTodo = (event) => {
     event.preventDefault();
-    console.log('Selected Category:', todoCategory);
     if (todoTitle.trim() !== '') {
-      const selectedCategory = todoCategory !== null ? todoCategory : 'All';
       onAddTodo({
         id: Date.now(),
         title: todoTitle,
         priority: todoPriority,
-        category: selectedCategory
+        category: todoCategory !== null ? todoCategory : 'All'
       });
       console.log(todoTitle);
       setTodoTitle('');
@@ -86,7 +83,8 @@ function AddTodoForm({ onAddTodo }) {
 }
 
 AddTodoForm.propTypes = {
-  onAddTodo: PropTypes.func
+  onAddTodo: PropTypes.func,
+  selectedCategory: PropTypes.string
 };
 
 export default AddTodoForm;

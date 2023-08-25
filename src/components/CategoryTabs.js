@@ -25,7 +25,7 @@ function CategoryTabs() {
           <Link to="/category/Personal">Personal</Link>
         </li>
         <li onClick={() => handleCategoryClick('Birthday')}>
-          <Link to="/">Birthday</Link>
+          <Link to="/category/Birthday">Birthday</Link>
         </li>
         <li onClick={() => handleCategoryClick('Wishlist')}>
           <Link to="/category/Work">Wishlist</Link>

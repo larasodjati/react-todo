@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import TodoContainer from './components/TodoContainer';
 
 const REACT_APP_TABLE_NAME = process.env.REACT_APP_TABLE_NAME;
 
 function App() {
+  const { category } = useParams();
   return (
     <BrowserRouter>
       <Routes>
@@ -32,6 +33,7 @@ function App() {
             <TodoContainer
               tableName={REACT_APP_TABLE_NAME}
               isAddTodoForm={true}
+              selectedCategory={category}
             />
           }
         />
