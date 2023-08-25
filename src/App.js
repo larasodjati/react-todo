@@ -10,9 +10,35 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<TodoContainer tableName={REACT_APP_TABLE_NAME} />}
+          element={
+            <TodoContainer
+              tableName={REACT_APP_TABLE_NAME}
+              isAddTodoForm={false}
+            />
+          }
         />
-        <Route path="/new" element={<h1>New Todo List</h1>} />
+        <Route
+          path="/category/:category"
+          element={
+            <TodoContainer
+              tableName={REACT_APP_TABLE_NAME}
+              isAddTodoForm={false}
+            />
+          }
+        />
+        <Route
+          path="/add"
+          element={
+            <TodoContainer
+              tableName={REACT_APP_TABLE_NAME}
+              isAddTodoForm={true}
+            />
+          }
+        />
+        <Route
+          path="*"
+          element={<h1>Not Found Page</h1>} // Replace with your "Not Found" component
+        />
       </Routes>
     </BrowserRouter>
   );

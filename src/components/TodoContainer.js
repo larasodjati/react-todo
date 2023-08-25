@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, Outlet, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
+import CategoryTabs from './CategoryTabs';
 
-function TodoContainer({ tableName }) {
+function TodoContainer({ tableName, isAddTodoForm }) {
+  const { category } = useParams();
+  const selectedCategory = category || 'All';
+
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [removedTodo, setRemovedTodo] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const REACT_APP_AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
   const REACT_APP_AIRTABLE_BASE_ID = process.env.REACT_APP_AIRTABLE_BASE_ID;
@@ -89,7 +93,8 @@ function TodoContainer({ tableName }) {
   };
   // wrapper function for postTodo
   const addTodo = async (newTodo) => {
-    newTodo.category = selectedCategory;
+    newTodo.category = selectedCategory || 'All';
+    console.log('Selected Category:', selectedCategory);
     const addedTodo = await postTodo(newTodo);
     if (addedTodo) {
       setTodoList([...todoList, { ...newTodo }]);
@@ -180,6 +185,7 @@ function TodoContainer({ tableName }) {
     setSearchTerm(event.target.value);
   };
 
+  // search bar function
   const filteredTodoList = todoList.filter((todo) => {
     const matchCategory =
       selectedCategory === 'All' || todo.category === selectedCategory;
@@ -200,43 +206,13 @@ function TodoContainer({ tableName }) {
           onChange={handleSearch}
         />
       </>
-
-      <nav>
-        <ul>
-          <li
-            className={selectedCategory === 'All' ? 'active' : ''}
-            onClick={() => setSelectedCategory('All')}
-          >
-            All
-          </li>
-          <li
-            className={selectedCategory === 'Work' ? 'active' : ''}
-            onClick={() => setSelectedCategory('Work')}
-          >
-            Work
-          </li>
-          <li
-            className={selectedCategory === 'Personal' ? 'active' : ''}
-            onClick={() => setSelectedCategory('Personal')}
-          >
-            Personal
-          </li>
-          <li
-            className={selectedCategory === 'Birthday' ? 'active' : ''}
-            onClick={() => setSelectedCategory('Birthday')}
-          >
-            Birthday
-          </li>
-          <li
-            className={selectedCategory === 'Wishlist' ? 'active' : ''}
-            onClick={() => setSelectedCategory('Wishlist')}
-          >
-            Wishlist
-          </li>
-        </ul>
-      </nav>
-
-      <AddTodoForm onAddTodo={addTodo} />
+      <CategoryTabs />
+      <Link to="/add">
+        <button>Add New Todo</button>
+      </Link>
+      {isAddTodoForm && (
+        <AddTodoForm onAddTodo={addTodo} selectedCategory={selectedCategory} />
+      )}
 
       {removedTodo && (
         <p>
@@ -249,11 +225,14 @@ function TodoContainer({ tableName }) {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <TodoList
-          todoList={filteredTodoList}
-          onRemoveTodo={removeTodo}
-          onUpdateTodo={updateTodo}
-        />
+        <>
+          <Outlet />
+          <TodoList
+            todoList={filteredTodoList}
+            onRemoveTodo={removeTodo}
+            onUpdateTodo={updateTodo}
+          />
+        </>
       )}
     </>
   );
