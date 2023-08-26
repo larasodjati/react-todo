@@ -8,6 +8,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   const [newCategory, setNewCategory] = useState(todo.category);
   const [completed, setCompleted] = useState(todo.completed || false);
   const [completedAt, setCompletedAt] = useState(todo.completedAt || null);
+  const [newDueDate, setNewDueDate] = useState(todo.dueDate);
 
   const handleRemoveTodo = () => {
     onRemoveTodo(todo.id);
@@ -18,7 +19,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   };
 
   const handleUpdateClick = () => {
-    onUpdateTodo(todo.id, newTitle, newPriority, newCategory);
+    onUpdateTodo(todo.id, newTitle, newPriority, newCategory, newDueDate);
     setIsEditing(false);
   };
 
@@ -26,6 +27,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
     setNewTitle(todo.title);
     setNewPriority(todo.priority);
     setNewCategory(todo.category);
+    setNewDueDate(todo.dueDate);
     setIsEditing(false);
   };
   const handleTitleChange = (event) => {
@@ -40,6 +42,9 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
     setNewCategory(event.target.value);
   };
 
+  const handleDueDateChange = (event) => {
+    setNewDueDate(event.target.value);
+  };
   const handleCompletedToggle = () => {
     const newCompletedAt = new Date().toISOString();
     setCompleted(!completed);
@@ -70,6 +75,11 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
             <option value="Birthday">Birthday</option>
             <option value="Wishlist">Wishlist</option>
           </select>
+          <input
+            type="date"
+            value={newDueDate}
+            onChange={handleDueDateChange}
+          />
           <label>
             Completed:
             <input
@@ -94,6 +104,8 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
           <div>Priority: {todo.priority}</div>
 
           <div>Category: {todo.category}</div>
+
+          <div>Due Date: {new Date(todo.dueDate).toLocaleDateString()}</div>
 
           <div>
             {completed && completedAt && (

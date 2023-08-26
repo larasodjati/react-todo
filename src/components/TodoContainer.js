@@ -45,7 +45,8 @@ function TodoContainer({ tableName, isAddTodoForm }) {
           priority: todo.fields.priority,
           category: todo.fields.category,
           completed: todo.fields.completed || false, // set default to false
-          completedAt: todo.fields.completedAt || null // set default to null
+          completedAt: todo.fields.completedAt || null, // set default to null
+          dueDate: todo.fields.dueDate || null
         };
         return newTodo;
       });
@@ -71,7 +72,8 @@ function TodoContainer({ tableName, isAddTodoForm }) {
       fields: {
         title: todo.title,
         priority: todo.priority,
-        category: todo.category
+        category: todo.category,
+        dueDate: todo.dueDate
       }
     };
     const options = {
@@ -106,7 +108,8 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     newPriority,
     newCategory,
     newCompleted,
-    newCompletedAt
+    newCompletedAt,
+    newDueDate
   ) => {
     const updateTodos = {
       fields: {
@@ -114,7 +117,8 @@ function TodoContainer({ tableName, isAddTodoForm }) {
         priority: newPriority,
         category: newCategory,
         completed: newCompleted,
-        completedAt: newCompletedAt
+        completedAt: newCompletedAt,
+        dueDate: newDueDate
       }
     };
 
@@ -140,7 +144,8 @@ function TodoContainer({ tableName, isAddTodoForm }) {
             priority: newPriority,
             category: newCategory,
             completed: newCompleted,
-            completedAt: newCompletedAt
+            completedAt: newCompletedAt,
+            dueDate: newDueDate
           };
         }
         return todo;

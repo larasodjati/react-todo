@@ -9,6 +9,7 @@ function AddTodoForm({ onAddTodo }) {
   const [todoTitle, setTodoTitle] = useState('');
   const [todoPriority, setTodoPriority] = useState('');
   const [todoCategory, setTodoCategory] = useState('');
+  const [todoDueDate, setTodoDueDate] = useState('');
 
   const handleTitleChange = (event) => {
     const newTodoTitle = event.target.value;
@@ -24,6 +25,11 @@ function AddTodoForm({ onAddTodo }) {
     const newTodoCategory = event.target.value;
     setTodoCategory(newTodoCategory);
   };
+
+  const handleDueDateChange = (event) => {
+    const newDueDate = event.target.value;
+    setTodoDueDate(newDueDate);
+  };
   const handleAddTodo = (event) => {
     event.preventDefault();
     if (todoTitle.trim() !== '') {
@@ -31,12 +37,14 @@ function AddTodoForm({ onAddTodo }) {
         id: Date.now(),
         title: todoTitle,
         priority: todoPriority,
-        category: todoCategory !== null ? todoCategory : 'All'
+        category: todoCategory !== null ? todoCategory : 'All',
+        dueDate: todoDueDate
       });
       console.log(todoTitle);
       setTodoTitle('');
       setTodoPriority('');
       setTodoCategory('');
+      setTodoDueDate('');
     }
   };
 
@@ -72,6 +80,13 @@ function AddTodoForm({ onAddTodo }) {
             <option value="Birthday">Birthday</option>
             <option value="Wishlist">Wishlist</option>
           </select>
+
+          <label>Due Date:</label>
+          <input
+            type="date"
+            value={todoDueDate}
+            onChange={handleDueDateChange}
+          />
         </div>
         <button type="submit">Add</button>
         <button type="button" onClick={handleCancelAdd}>
