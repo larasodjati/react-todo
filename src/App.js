@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import TodoContainer from './components/TodoContainer';
+import TodoCalendar from './components/TodoCalendar';
 
 const REACT_APP_TABLE_NAME = process.env.REACT_APP_TABLE_NAME;
 
@@ -37,10 +38,8 @@ function App() {
             />
           }
         />
-        <Route
-          path="*"
-          element={<h1>Not Found Page</h1>} // Replace with your "Not Found" component
-        />
+        <Route path="/calendar" element={<TodoCalendar />} />
+        <Route path="*" element={<h1>Not Found Page</h1>} />
       </Routes>
     </BrowserRouter>
   );

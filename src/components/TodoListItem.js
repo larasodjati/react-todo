@@ -19,7 +19,15 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   };
 
   const handleUpdateClick = () => {
-    onUpdateTodo(todo.id, newTitle, newPriority, newCategory, newDueDate);
+    onUpdateTodo(
+      todo.id,
+      newTitle,
+      newPriority,
+      newCategory,
+      newDueDate,
+      completed,
+      completedAt
+    );
     setIsEditing(false);
   };
 
@@ -45,16 +53,21 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   const handleDueDateChange = (event) => {
     setNewDueDate(event.target.value);
   };
-  const handleCompletedToggle = () => {
-    const newCompletedAt = new Date().toISOString();
-    setCompleted(!completed);
-    if (!completed) {
-      setCompletedAt(newCompletedAt); // set to current time if marking as completed
-    } else {
-      setCompletedAt(null);
-    }
-  };
 
+  const handleCompletedToggle = () => {
+    const newCompletedValue = !completed;
+    const newCompletedAt = newCompletedValue ? new Date().toISOString() : null; // Set completedAt based on the new value
+    setCompleted(newCompletedValue); // Update the state
+    setCompletedAt(newCompletedAt); // Update the completedAt state
+    onUpdateTodo(
+      todo.id,
+      newTitle,
+      newPriority,
+      newCategory,
+      newCompletedValue,
+      newCompletedAt
+    );
+  };
   return (
     <div>
       {isEditing ? (
@@ -127,6 +140,7 @@ TodoListItem.propTypes = {
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     title: PropTypes.string,
     priority: PropTypes.string,
+    dueDate: PropTypes.string,
     completed: PropTypes.bool,
     completedAt: PropTypes.string
   }),

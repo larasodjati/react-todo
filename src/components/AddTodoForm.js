@@ -99,7 +99,14 @@ function AddTodoForm({ onAddTodo }) {
 
 AddTodoForm.propTypes = {
   onAddTodo: PropTypes.func,
-  selectedCategory: PropTypes.string
+  todoTitle: PropTypes.string,
+  handleTitleChange: PropTypes.func,
+  todoPriority: PropTypes.string,
+  handlePriorityChange: PropTypes.func,
+  todoCategory: PropTypes.string,
+  handleCategoryChange: PropTypes.func,
+  todoDueDate: PropTypes.string,
+  handleDueDateChange: PropTypes.func
 };
 
 export default AddTodoForm;

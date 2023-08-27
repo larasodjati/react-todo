@@ -35,4 +35,5 @@ function CategoryTabs() {
   );
 }
 
+CategoryTabs.propTypes = {};
 export default CategoryTabs;

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 import CategoryTabs from './CategoryTabs';
+import TodoCalendar from './TodoCalendar';
 
 function TodoContainer({ tableName, isAddTodoForm }) {
   const { category } = useParams();
@@ -13,6 +14,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
   const [isLoading, setIsLoading] = useState(true);
   const [removedTodo, setRemovedTodo] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [calendarEvents, setCalendarEvents] = useState([]);
 
   const REACT_APP_AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
   const REACT_APP_AIRTABLE_BASE_ID = process.env.REACT_APP_AIRTABLE_BASE_ID;
@@ -44,9 +46,9 @@ function TodoContainer({ tableName, isAddTodoForm }) {
           title: todo.fields.title,
           priority: todo.fields.priority,
           category: todo.fields.category,
+          dueDate: todo.fields.dueDate || null,
           completed: todo.fields.completed || false, // set default to false
-          completedAt: todo.fields.completedAt || null, // set default to null
-          dueDate: todo.fields.dueDate || null
+          completedAt: todo.fields.completedAt || null // set default to null
         };
         return newTodo;
       });
@@ -66,6 +68,17 @@ function TodoContainer({ tableName, isAddTodoForm }) {
       localStorage.setItem('savedTodoList', JSON.stringify(todoList));
     }
   }, [todoList, isLoading]);
+
+  useEffect(() => {
+    // Only fetch calendar events after todoList is updated by fetchData
+    const calendarEvents = todoList.map((todo) => ({
+      title: todo.title,
+      start: new Date(todo.dueDate),
+      end: new Date(todo.dueDate)
+    }));
+
+    setCalendarEvents(calendarEvents);
+  }, [todoList]);
 
   const postTodo = async (todo) => {
     const postTodos = {
@@ -107,18 +120,21 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     newTitle,
     newPriority,
     newCategory,
+    newDueDate,
     newCompleted,
-    newCompletedAt,
-    newDueDate
+    newCompletedAt
   ) => {
+    console.log('updateTodo received values:');
+    console.log('newCompleted:', newCompleted);
+    console.log('newCompletedAt:', newCompletedAt);
     const updateTodos = {
       fields: {
         title: newTitle,
         priority: newPriority,
         category: newCategory,
+        dueDate: newDueDate,
         completed: newCompleted,
-        completedAt: newCompletedAt,
-        dueDate: newDueDate
+        completedAt: newCompletedAt
       }
     };
 
@@ -143,9 +159,9 @@ function TodoContainer({ tableName, isAddTodoForm }) {
             title: newTitle,
             priority: newPriority,
             category: newCategory,
+            dueDate: newDueDate,
             completed: newCompleted,
-            completedAt: newCompletedAt,
-            dueDate: newDueDate
+            completedAt: newCompletedAt
           };
         }
         return todo;
@@ -215,6 +231,10 @@ function TodoContainer({ tableName, isAddTodoForm }) {
       <Link to="/add">
         <button>Add New Todo</button>
       </Link>
+
+      <Link to="/calendar">
+        <button>View Calendar</button>
+      </Link>
       {isAddTodoForm && (
         <AddTodoForm
           onAddTodo={addTodo}
@@ -240,13 +260,17 @@ function TodoContainer({ tableName, isAddTodoForm }) {
             onRemoveTodo={removeTodo}
             onUpdateTodo={updateTodo}
           />
+          {calendarEvents.length > 0 && (
+            <TodoCalendar events={calendarEvents} />
+          )}
         </>
       )}
     </>
   );
 }
 TodoContainer.propTypes = {
-  tableName: PropTypes.string.isRequired
+  tableName: PropTypes.string,
+  isAddTodoForm: PropTypes.bool
 };
 
 export default TodoContainer;
