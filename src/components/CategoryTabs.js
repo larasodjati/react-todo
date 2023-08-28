@@ -1,34 +1,50 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import styles from './CategoryTabs.module.css';
 
-function CategoryTabs() {
-  const navigate = useNavigate();
-
+function CategoryTabs({ onSelectCategory, selectedCategory }) {
   const handleCategoryClick = (selectedCategory) => {
-    if (selectedCategory === 'All') {
-      navigate('/');
-    } else {
-      navigate(`/category/${selectedCategory}`);
-    }
+    onSelectCategory(selectedCategory);
   };
-
   return (
     <nav>
-      <ul>
-        <li onClick={() => handleCategoryClick('All')}>
-          <Link to="/">All</Link>
+      <ul className={styles.navList}>
+        <li
+          onClick={() => handleCategoryClick('All')}
+          className={`${styles.navItem} ${selectedCategory} === 'All'? styles.active : ''}`}
+        >
+          All
         </li>
-        <li onClick={() => handleCategoryClick('Work')}>
-          <Link to="/category/Work">Work</Link>
+        <li
+          onClick={() => handleCategoryClick('Work')}
+          className={`${styles.navItem} ${
+            selectedCategory === 'Work' ? styles.active : ''
+          }`}
+        >
+          Work
         </li>
-        <li onClick={() => handleCategoryClick('Personal')}>
-          <Link to="/category/Personal">Personal</Link>
+        <li
+          onClick={() => handleCategoryClick('Personal')}
+          className={`${styles.navItem} ${
+            selectedCategory === 'Personal' ? styles.active : ''
+          }`}
+        >
+          Personal
         </li>
-        <li onClick={() => handleCategoryClick('Birthday')}>
-          <Link to="/category/Birthday">Birthday</Link>
+        <li
+          onClick={() => handleCategoryClick('Birthday')}
+          className={`${styles.navItem} ${
+            selectedCategory === 'Birthday' ? styles.active : ''
+          }`}
+        >
+          Birthday
         </li>
-        <li onClick={() => handleCategoryClick('Wishlist')}>
-          <Link to="/category/Work">Wishlist</Link>
+        <li
+          onClick={() => handleCategoryClick('Wishlist')}
+          className={`${styles.navItem} ${
+            selectedCategory === 'Wishlist' ? styles.active : ''
+          }`}
+        >
+          Wishlist
         </li>
       </ul>
     </nav>

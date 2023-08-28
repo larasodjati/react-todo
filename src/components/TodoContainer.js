@@ -5,16 +5,31 @@ import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 import CategoryTabs from './CategoryTabs';
 import TodoCalendar from './TodoCalendar';
+import styles from './TodoContainer.module.css';
 
 function TodoContainer({ tableName, isAddTodoForm }) {
   const { category } = useParams();
-  const selectedCategory = category || 'All';
 
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [removedTodo, setRemovedTodo] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [calendarEvents, setCalendarEvents] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(category || 'All');
+  const [isAddingTodo, setIsAddingTodo] = useState(false);
+
+  const onSelectCategory = (newCategory) => {
+    setSelectedCategory(newCategory);
+  };
+
+  const handleCloseAddTodoForm = () => {
+    setIsAddingTodo(false);
+  };
+
+  const toggleAddTodo = () => {
+    console.log('button clicked');
+    setIsAddingTodo(!isAddingTodo);
+  };
 
   const REACT_APP_AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
   const REACT_APP_AIRTABLE_BASE_ID = process.env.REACT_APP_AIRTABLE_BASE_ID;
@@ -217,8 +232,11 @@ function TodoContainer({ tableName, isAddTodoForm }) {
 
   return (
     <>
-      <h1>Todo List</h1>
-      <CategoryTabs />
+      <h1 className={styles.mainHeader}>Todo List</h1>
+      <CategoryTabs
+        selectedCategory={selectedCategory}
+        onSelectCategory={onSelectCategory}
+      />
       <>
         <input
           type="text"
@@ -228,9 +246,14 @@ function TodoContainer({ tableName, isAddTodoForm }) {
         />
       </>
 
-      <Link to="/add">
-        <button>Add New Todo</button>
-      </Link>
+      <button
+        onClick={() => {
+          toggleAddTodo();
+          console.log('Button Clicked');
+        }}
+      >
+        Add New Todo
+      </button>
 
       <Link to="/calendar">
         <button>View Calendar</button>
@@ -238,7 +261,9 @@ function TodoContainer({ tableName, isAddTodoForm }) {
       {isAddTodoForm && (
         <AddTodoForm
           onAddTodo={addTodo}
+          onClose={handleCloseAddTodoForm}
           selectedCategory={selectedCategory || 'All'}
+          isAddingTodo={isAddingTodo}
         />
       )}
 

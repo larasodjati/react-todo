@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import styles from './TodoListItem.module.css';
 
 function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -64,73 +65,99 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
       newTitle,
       newPriority,
       newCategory,
+      newDueDate,
       newCompletedValue,
       newCompletedAt
     );
   };
   return (
-    <div>
-      {isEditing ? (
-        <div>
-          <input type="text" value={newTitle} onChange={handleTitleChange} />
-          <select value={newPriority} onChange={handlePriorityChange}>
-            <option value="">Select Priority</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </select>
-
-          <select value={newCategory} onChange={handleCategoryChange}>
-            <option value="">Select Category</option>
-            <option value="All">All</option>
-            <option value="Work">Work</option>
-            <option value="Personal">Personal</option>
-            <option value="Birthday">Birthday</option>
-            <option value="Wishlist">Wishlist</option>
-          </select>
-          <input
-            type="date"
-            value={newDueDate}
-            onChange={handleDueDateChange}
-          />
-          <label>
-            Completed:
+    <div className={styles.pageContainer}>
+      <div className={styles.listItem}>
+        {isEditing ? (
+          <div className={styles.editingBlock}>
             <input
-              type="checkbox"
-              checked={completed}
-              onChange={handleCompletedToggle}
+              type="text"
+              value={newTitle}
+              onChange={handleTitleChange}
+              className={styles.inputFields}
             />
-          </label>
-          <button onClick={handleCancelClick}>Cancel</button>
-          <button onClick={handleUpdateClick}>Update</button>
-        </div>
-      ) : (
-        <div>
-          <label>
+            <select
+              value={newPriority}
+              onChange={handlePriorityChange}
+              className={styles.selectFields}
+            >
+              <option value="">Select Priority</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+
+            <select
+              value={newCategory}
+              onChange={handleCategoryChange}
+              className={styles.selectFields}
+            >
+              <option value="">Select Category</option>
+              <option value="All">All</option>
+              <option value="Work">Work</option>
+              <option value="Personal">Personal</option>
+              <option value="Birthday">Birthday</option>
+              <option value="Wishlist">Wishlist</option>
+            </select>
             <input
-              type="checkbox"
-              checked={completed}
-              onChange={handleCompletedToggle}
+              type="date"
+              value={newDueDate}
+              onChange={handleDueDateChange}
+              className={styles.inputFields}
             />
-            {todo.title}
-          </label>
-          <div>Priority: {todo.priority}</div>
-
-          <div>Category: {todo.category}</div>
-
-          <div>Due Date: {new Date(todo.dueDate).toLocaleDateString()}</div>
-
-          <div>
-            {completed && completedAt && (
-              <div>
-                Completed At: {new Date(completedAt).toLocaleDateString()}
-              </div>
-            )}
+            <label>
+              Completed:
+              <input
+                type="checkbox"
+                checked={completed}
+                onChange={handleCompletedToggle}
+                className={styles.inputFields}
+              />
+            </label>
+            <button onClick={handleCancelClick} className={styles.editButton}>
+              Cancel
+            </button>
+            <button onClick={handleUpdateClick} className={styles.editButton}>
+              Update
+            </button>
           </div>
-          <button onClick={handleEditClick}>Edit</button>
-          <button onClick={handleRemoveTodo}>Remove</button>
-        </div>
-      )}
+        ) : (
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                checked={completed}
+                onChange={handleCompletedToggle}
+              />
+              {todo.title}
+            </label>
+            <div>Priority: {todo.priority}</div>
+
+            <div>Category: {todo.category}</div>
+
+            <div>Due Date: {new Date(todo.dueDate).toLocaleDateString()}</div>
+
+            <div>
+              {completed && completedAt && (
+                <div>
+                  Completed At: {new Date(completedAt).toLocaleDateString()}
+                </div>
+              )}
+            </div>
+            <button onClick={handleEditClick} className={styles.editButton}>
+              Edit
+            </button>
+            <button onClick={handleRemoveTodo} className={styles.editButton}>
+              Remove
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

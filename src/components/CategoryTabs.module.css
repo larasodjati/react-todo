@@ -1,0 +1,32 @@
+.nav {
+    /* Styles for the navigation container */
+    background-color: #DEDCE4;
+    padding: 10px 0;
+ 
+}
+
+.navList{
+    /* Styles for the navigation list  */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    justify-content: right;
+  
+}
+
+.navItem{
+    /* Styles for the list item */
+    cursor: pointer;
+    font-size: 1.4em;
+    text-decoration: none;
+    color: #478C5C;
+  
+}
+
+.navItem:hover{
+    text-decoration: underline;
+    color: #FDCD93;
+
+}

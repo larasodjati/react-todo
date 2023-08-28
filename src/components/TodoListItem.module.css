@@ -1,0 +1,52 @@
+.pageContainer {
+    max-width: 1000px;
+    padding: 50px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.listItem {
+    /* Styles for both editing and non-editing modes */
+    font-size: 1.4em;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    color: #7C7C7C;
+    text-align: left;
+    justify-content: center ;
+}
+
+.editingBlock {
+    /* Styles for the editing block */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #808484;
+    background-color: #E9EEF0;
+}
+
+.inputFields,
+.selectFields {
+    /* Styles for the input fields */
+    padding: 5px;
+    border: 1px solid #808484;
+    border-radius: 5px;
+}
+
+.listItem input,
+.listItem select,
+.listItem label {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    color: #7C7C7C;
+}
+
+.listItem button,
+.editButton {
+    /* Styles for buttons */
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    font-size: 1.2 em;
+    color: #E9EEF0;
+    background-color: #191C20;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
