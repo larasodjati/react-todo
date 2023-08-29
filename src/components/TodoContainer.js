@@ -3,7 +3,7 @@ import { useParams, Outlet, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
-import CategoryTabs from './CategoryTabs';
+import CategoryDropdown from './CategoryDropdown';
 import styles from './TodoContainer.module.css';
 
 function TodoContainer({ tableName, isAddTodoForm }) {
@@ -238,29 +238,34 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     <>
       <div className={styles.appContainer}>
         <h1 className={styles.mainHeader}>Todo List</h1>
-        <CategoryTabs
-          selectedCategory={selectedCategory}
-          onSelectCategory={onSelectCategory}
-        />
-        <>
-          <input
-            type="text"
-            placeholder="Search todos"
-            value={searchTerm}
-            onChange={handleSearch}
+        <div className={styles.headerContainer}>
+          <CategoryDropdown
+            categories={['All', 'Work', 'Personal', 'Birthday', 'Wishlist']}
+            onSelectCategory={onSelectCategory}
+            selectedCategory={selectedCategory}
           />
-        </>
+          <>
+            <input
+              type="text"
+              placeholder="Search todos"
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+          </>
 
-        <button
-          onClick={() => {
-            toggleAddTodo();
-            console.log('Button Clicked');
-          }}
-        >
-          Add New Todo
-        </button>
+          <button
+            onClick={() => {
+              toggleAddTodo();
+              console.log('Button Clicked');
+            }}
+          >
+            Add New Todo
+          </button>
 
-        <button onClick={handleViewCalendarClick}>View Calendar</button>
+          <button onClick={handleViewCalendarClick}>View Calendar</button>
+        </div>
+
+        <hr className={styles.headerLine} />
 
         {isAddTodoForm && (
           <AddTodoForm
