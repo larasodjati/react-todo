@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Outlet, Link } from 'react-router-dom';
+import { useParams, Outlet, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 import CategoryTabs from './CategoryTabs';
-import TodoCalendar from './TodoCalendar';
 import styles from './TodoContainer.module.css';
 
 function TodoContainer({ tableName, isAddTodoForm }) {
   const { category } = useParams();
+  const navigate = useNavigate();
 
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -230,66 +230,68 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     return matchCategory && matchSearchTerm;
   });
 
+  // handle view calendar click
+  const handleViewCalendarClick = () => {
+    navigate('/calendar', { state: { events: calendarEvents } });
+  };
   return (
     <>
-      <h1 className={styles.mainHeader}>Todo List</h1>
-      <CategoryTabs
-        selectedCategory={selectedCategory}
-        onSelectCategory={onSelectCategory}
-      />
-      <>
-        <input
-          type="text"
-          placeholder="Search todos"
-          value={searchTerm}
-          onChange={handleSearch}
+      <div className={styles.appContainer}>
+        <h1 className={styles.mainHeader}>Todo List</h1>
+        <CategoryTabs
+          selectedCategory={selectedCategory}
+          onSelectCategory={onSelectCategory}
         />
-      </>
-
-      <button
-        onClick={() => {
-          toggleAddTodo();
-          console.log('Button Clicked');
-        }}
-      >
-        Add New Todo
-      </button>
-
-      <Link to="/calendar">
-        <button>View Calendar</button>
-      </Link>
-      {isAddTodoForm && (
-        <AddTodoForm
-          onAddTodo={addTodo}
-          onClose={handleCloseAddTodoForm}
-          selectedCategory={selectedCategory || 'All'}
-          isAddingTodo={isAddingTodo}
-        />
-      )}
-
-      {removedTodo && (
-        <p>
-          <strong>{removedTodo.title}</strong> has been removed.
-        </p>
-      )}
-      <p>
-        New thing to do is <strong>{lastAddedTodo}</strong>
-      </p>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
         <>
-          <Outlet />
-          <TodoList
-            todoList={filteredTodoList}
-            onRemoveTodo={removeTodo}
-            onUpdateTodo={updateTodo}
+          <input
+            type="text"
+            placeholder="Search todos"
+            value={searchTerm}
+            onChange={handleSearch}
           />
-          {calendarEvents.length > 0 && (
-            <TodoCalendar events={calendarEvents} />
-          )}
         </>
-      )}
+
+        <button
+          onClick={() => {
+            toggleAddTodo();
+            console.log('Button Clicked');
+          }}
+        >
+          Add New Todo
+        </button>
+
+        <button onClick={handleViewCalendarClick}>View Calendar</button>
+
+        {isAddTodoForm && (
+          <AddTodoForm
+            onAddTodo={addTodo}
+            onClose={handleCloseAddTodoForm}
+            selectedCategory={selectedCategory || 'All'}
+            isAddingTodo={isAddingTodo}
+          />
+        )}
+
+        {removedTodo && (
+          <p>
+            <strong>{removedTodo.title}</strong> has been removed.
+          </p>
+        )}
+        <p>
+          New thing to do is <strong>{lastAddedTodo}</strong>
+        </p>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <Outlet />
+            <TodoList
+              todoList={filteredTodoList}
+              onRemoveTodo={removeTodo}
+              onUpdateTodo={updateTodo}
+            />
+          </>
+        )}
+      </div>
     </>
   );
 }

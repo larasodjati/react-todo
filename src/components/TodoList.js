@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TodoListItem from './TodoListItem';
+import styles from './TodoList.module.css';
 
-function TodoList({ todoList, onRemoveTodo, onUpdateTodo }) {
+export function TodoList({ todoList, onRemoveTodo, onUpdateTodo }) {
   return (
-    <ul>
+    <ul className={styles.todoList}>
       {todoList.map(function (todo) {
         return (
           <TodoListItem
@@ -12,6 +13,7 @@ function TodoList({ todoList, onRemoveTodo, onUpdateTodo }) {
             todo={todo}
             onRemoveTodo={onRemoveTodo}
             onUpdateTodo={onUpdateTodo}
+            className={styles.todoList}
           />
         );
       })}

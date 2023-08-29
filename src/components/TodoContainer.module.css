@@ -1,4 +1,16 @@
+.appContainer {
+    /* Styles for app container */
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
 .mainHeader{
+    /* Styles for main header */
     font-size: 2.0 em;
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
     text-align: center;

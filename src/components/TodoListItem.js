@@ -71,7 +71,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
     );
   };
   return (
-    <div className={styles.pageContainer}>
+    <div className={styles.itemContainer}>
       <div className={styles.listItem}>
         {isEditing ? (
           <div className={styles.editingBlock}>
@@ -127,7 +127,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
             </button>
           </div>
         ) : (
-          <div>
+          <div className={styles.listBlock}>
             <label>
               <input
                 type="checkbox"
