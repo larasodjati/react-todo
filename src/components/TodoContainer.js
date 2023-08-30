@@ -245,24 +245,32 @@ function TodoContainer({ tableName, isAddTodoForm }) {
             selectedCategory={selectedCategory}
           />
           <>
-            <input
-              type="text"
-              placeholder="Search todos"
-              value={searchTerm}
-              onChange={handleSearch}
-            />
+            <form className={styles.searchForm}>
+              <input
+                type="text"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={handleSearch}
+                className={styles.searchInput}
+              />
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </form>
           </>
-
           <button
             onClick={() => {
               toggleAddTodo();
-              console.log('Button Clicked');
             }}
+            className={styles.addTodoBtn}
           >
             Add New Todo
           </button>
 
-          <button onClick={handleViewCalendarClick}>View Calendar</button>
+          <button
+            onClick={handleViewCalendarClick}
+            className={styles.viewCalendarBtn}
+          >
+            View Calendar
+          </button>
         </div>
 
         <hr className={styles.headerLine} />

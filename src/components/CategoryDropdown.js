@@ -14,7 +14,7 @@ function CategoryDropdown({ categories, onSelectCategory, selectedCategory }) {
   };
   return (
     <div className={styles.categoryDropdown}>
-      <button onClick={toggleDropdown}>
+      <button onClick={toggleDropdown} className={styles.categoryBtn}>
         {selectedCategory ? `Category: ${selectedCategory}` : 'Select Category'}
       </button>
       {isOpen && (
