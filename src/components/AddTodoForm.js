@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import InputWithLabel from './InputWithLabel';
+import styles from './AddTodoForm.module.css';
 
 function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
   const [todoTitle, setTodoTitle] = useState('');
@@ -42,6 +43,7 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
       setTodoPriority('');
       setTodoCategory('');
       setTodoDueDate('');
+      onClose();
     }
   };
 
@@ -50,51 +52,57 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
     onClose();
   };
   return (
-    <div>
-      {isAddingTodo && (
-        <>
-          <h2>Add New Todo</h2>
-          <form onSubmit={handleAddTodo}>
-            <InputWithLabel
-              todoTitle={todoTitle}
-              handleTitleChange={handleTitleChange}
-            >
-              Title
-            </InputWithLabel>
+    <div
+      className={`${styles.modalContainer} ${
+        isAddingTodo ? styles.showModal : ''
+      }`}
+    >
+      <div className={styles.modalContent}>
+        {isAddingTodo && (
+          <>
+            <h2>Add New Todo</h2>
+            <form onSubmit={handleAddTodo}>
+              <InputWithLabel
+                todoTitle={todoTitle}
+                handleTitleChange={handleTitleChange}
+              >
+                Title
+              </InputWithLabel>
 
-            <div>
-              <label>Priority:</label>
-              <select value={todoPriority} onChange={handlePriorityChange}>
-                <option value="">Select Priority</option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-              </select>
+              <div>
+                <label>Priority:</label>
+                <select value={todoPriority} onChange={handlePriorityChange}>
+                  <option value="">Select Priority</option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
 
-              <label>Category:</label>
-              <select value={todoCategory} onChange={handleCategoryChange}>
-                <option value="">Select Category</option>
-                <option value="All">All</option>
-                <option value="Work">Work</option>
-                <option value="Personal">Personal</option>
-                <option value="Birthday">Birthday</option>
-                <option value="Wishlist">Wishlist</option>
-              </select>
+                <label>Category:</label>
+                <select value={todoCategory} onChange={handleCategoryChange}>
+                  <option value="">Select Category</option>
+                  <option value="All">All</option>
+                  <option value="Work">Work</option>
+                  <option value="Personal">Personal</option>
+                  <option value="Birthday">Birthday</option>
+                  <option value="Wishlist">Wishlist</option>
+                </select>
 
-              <label>Due Date:</label>
-              <input
-                type="date"
-                value={todoDueDate}
-                onChange={handleDueDateChange}
-              />
-            </div>
-            <button type="submit">Add</button>
-            <button type="button" onClick={handleCancelAdd}>
-              Cancel
-            </button>
-          </form>
-        </>
-      )}
+                <label>Due Date:</label>
+                <input
+                  type="date"
+                  value={todoDueDate}
+                  onChange={handleDueDateChange}
+                />
+              </div>
+              <button type="submit">Add</button>
+              <button type="button" onClick={handleCancelAdd}>
+                Cancel
+              </button>
+            </form>
+          </>
+        )}
+      </div>
     </div>
   );
 }

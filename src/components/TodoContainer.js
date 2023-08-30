@@ -253,7 +253,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
                 onChange={handleSearch}
                 className={styles.searchInput}
               />
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i className="fa-solid fa-magnifying-glass"></i>
             </form>
           </>
           <button
