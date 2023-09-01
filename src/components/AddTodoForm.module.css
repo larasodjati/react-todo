@@ -21,10 +21,10 @@
 
 .modalContent {
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fefefe;
+    background-color: #f4f2f0;
     padding: 20px;
     border: 1px solid #888;
     width: 100%;
@@ -46,7 +46,7 @@
 }
 
 .modalContent h2 {
-    font-size: 2.6em;
+    font-size: 2.0em;
     font-family: 'Figtree', sans-serif;
     margin-top: 10px;
 }
@@ -72,7 +72,7 @@
     border-radius: 4px;
     width: 100%;
     margin-bottom: 20px;
-    font-size: 1.0em;
+    font-size: 1.2em;
     font-family: 'Figtree', sans-serif;
 }
 

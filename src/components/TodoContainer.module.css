@@ -14,15 +14,14 @@ body {
     max-width: 50%;
     margin: 0 auto;
     top: 0;
-    background-color: #f3e9e8;
+    background-color: #fbfae8;
     min-height: 100vh;
 }
 
 /* Styling for main header */
 .mainHeader{
-    font-size: 2.4em;
+    font-size: 3em;
     font-family: 'Alegreya Sans SC', Arial, Helvetica, sans-serif;
-    text-align: center;
     color: #FF5841;
     margin-bottom:50px;
 }
@@ -45,22 +44,23 @@ body {
 /* Styles for addTodoButton and calendar button */
 .addTodoBtn, .viewCalendarBtn {
     align-self: center;
-    background-color: #fff;
+    background-color: #f9e3d2;
     background-image: none;
     background-position: 0 100%;
     background-repeat: repeat no-repeat;
     background-size: 5px 3px;
     border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
     border-style:groove;
-    border-color: #ede6e6;
+    border-color: #f9e3d2;
     border-width: 1px;
     box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
     box-sizing: border-box;
-    color: #41403e;
+    color:#0d0d0c;
     cursor: pointer;
     display: inline-block;
     font-family: 'Jost', sans-serif;
     font-size: 1rem;
+    font-weight: 700;
     line-height: 23px;
     outline: none;
     padding: .75rem;
@@ -98,10 +98,10 @@ body {
     transition: all 1s;
     width:50px;
     height: 50px;
-    background: white;
+    background: #f9e3d2;
     box-sizing: border-box;
     border-radius: 25px;
-    border: 4px solid white;
+    border: 4px solid #f9e3d2;
     padding: 5px;
     position: relative;
     overflow: hidden;

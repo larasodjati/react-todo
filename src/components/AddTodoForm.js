@@ -66,7 +66,7 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
                 todoTitle={todoTitle}
                 handleTitleChange={handleTitleChange}
               >
-                Title
+                Title:
               </InputWithLabel>
 
               <div>

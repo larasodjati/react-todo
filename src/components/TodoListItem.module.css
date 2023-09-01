@@ -3,6 +3,7 @@
     border: 1px solid #cccccc;
     padding: 10px;
     margin-bottom: 10px;
+    background-color:#dbe5dd ;
 }
 
 /* Styling for the todo item */
@@ -23,7 +24,7 @@
 /* Styling for the title */
 .todoListTitle {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.4em;
     font-family: 'Figtree', Arial, Helvetica, sans-serif;
 }
 
@@ -56,7 +57,7 @@
 /* Styling for subattribute container */
 .subattributeContainer {
     margin-top: 10px;
-    border-top: 1px dashed #cccccc;
+    border-top: 1px dashed #bcbbbb;
     padding-top: 10px;
     display: flex;
     flex-direction: wrap;
@@ -66,8 +67,8 @@
 
 /* Styling for subattributes */
 .subattribute {
-    font-size: 1em;
+    font-size: 1.2em;
     font-family: 'Figtree', Georgia, 'Times New Roman', Times, serif;
-    color: #938C88;
+    color: #5d5a59;
     margin: 0 10px;
 }
