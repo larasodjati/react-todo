@@ -1,58 +1,73 @@
+/* Styling for the item container */
 .itemContainer {
-    max-width: 1000px;
-    padding: 50px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #cccccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Styling for the todo item */
+.listItem {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
-.listItem {
-    /* Styles for both editing and non-editing modes */
-    font-size: 1.4em;
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    color: #7C7C7C;
-    text-align: left;
-    width: 100%;
-    max-width: 100%;
-    padding: 20px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.editingBlock {
-    /* Styles for the editing block */
+/* Styling for the title container */
+.titleContainer {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Styling for the title */
+.todoListTitle {
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+}
+
+/* Styling for the flexible space */
+.flexibleSpace {
+    flex-grow: 1;
+}
+
+/* Styling for button container */
+.todoListBtnContainer {
+    display: flex;
+    align-items: center;
     gap: 10px;
-    padding: 10px;
-    border: 1px solid #808484;
-    background-color: #E9EEF0;
+  
 }
 
-.inputFields,
-.selectFields {
-    /* Styles for the input fields */
-    padding: 5px;
-    border: 1px solid #808484;
-    border-radius: 5px;
-}
-
-.listItem input,
-.listItem select,
-.listItem label {
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    color: #7C7C7C;
-}
-
-.listItem button,
+/* Styling for edit and delete buttons */
 .editButton {
-    /* Styles for buttons */
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    font-size: 1.2 em;
-    color: #E9EEF0;
-    background-color: #191C20;
+    background-color: #112044;
+    color: #cccccc;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+}
+
+.editButton:hover {
+    background-color: #fc5ebd;
+    color: #121212;
+    border: 1px solid #5b5a5a;
+}
+/* Styling for subattribute container */
+.subattributeContainer {
+    margin-top: 10px;
+    border-top: 1px dashed #cccccc;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: wrap;
+    align-items: center;
+    text-align: center;
+}
+
+/* Styling for subattributes */
+.subattribute {
+    font-size: 1em;
+    font-family: 'Figtree', Georgia, 'Times New Roman', Times, serif;
+    color: #938C88;
+    margin: 0 10px;
 }

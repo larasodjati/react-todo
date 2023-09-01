@@ -1,10 +1,12 @@
+/* Styling for the body of the page */
 body {
     margin: 0;
     padding: 0;
 }
 
+/* Styling for app container */
 .appContainer {
-    /* Styles for app container */
+
     display: flex;
     flex-direction:column;
     align-items: center;
@@ -16,8 +18,8 @@ body {
     min-height: 100vh;
 }
 
+/* Styling for main header */
 .mainHeader{
-    /* Styles for main header */
     font-size: 2.4em;
     font-family: 'Alegreya Sans SC', Arial, Helvetica, sans-serif;
     text-align: center;
@@ -25,23 +27,23 @@ body {
     margin-bottom:50px;
 }
 
+/* Styling for header container */
 .headerContainer {
-    /* Styles for header container */
     display: flex;
     align-items: center;
     gap: 30px;
 }
 
+/* Styles for header line */
 .headerLine {
-    /* Styles for header line */
     border-top: 10px;
     border: solid 1px gainsboro;
     width: 75%; 
     margin:25px; 
 }
 
+/* Styles for addTodoButton and calendar button */
 .addTodoBtn, .viewCalendarBtn {
-    /* Styles for addTodoButton and calendar button */
     align-self: center;
     background-color: #fff;
     background-image: none;
@@ -85,8 +87,8 @@ body {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
+/* Styles for search bar */
 .searchForm {
-    /* Styles for search bar */
     display: flex;
     justify-content: center;
     align-items: center;

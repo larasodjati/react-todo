@@ -74,6 +74,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
     <div className={styles.itemContainer}>
       <div className={styles.listItem}>
         {isEditing ? (
+          // Editing Mode
           <div className={styles.editingBlock}>
             <input
               type="text"
@@ -127,35 +128,48 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
             </button>
           </div>
         ) : (
-          <div className={styles.listBlock}>
-            <label>
-              <input
-                type="checkbox"
-                checked={completed}
-                onChange={handleCompletedToggle}
-              />
-              {todo.title}
-            </label>
-            <div>Priority: {todo.priority}</div>
-
-            <div>Category: {todo.category}</div>
-
-            <div>Due Date: {new Date(todo.dueDate).toLocaleDateString()}</div>
-
-            <div>
+          // Display Mode
+          <>
+            <div className={styles.titleContainer}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={completed}
+                  onChange={handleCompletedToggle}
+                />
+                <span className={styles.todoListTitle}>{todo.title}</span>
+              </label>
+              <div className={styles.flexibleSpace}></div>
+              <div className={styles.todoListBtnContainer}>
+                <button onClick={handleEditClick} className={styles.editButton}>
+                  Edit
+                </button>
+                <button
+                  onClick={handleRemoveTodo}
+                  className={styles.editButton}
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+            {/*Subattributes*/}
+            <div className={styles.subattributeContainer}>
+              <div className={styles.subattribute}>
+                Priority: {todo.priority}
+              </div>
+              <div className={styles.subattribute}>
+                Category: {todo.category}
+              </div>
+              <div className={styles.subattribute}>
+                Due Date: {new Date(todo.dueDate).toLocaleDateString()}
+              </div>
               {completed && completedAt && (
-                <div>
+                <div className={styles.subattribute}>
                   Completed At: {new Date(completedAt).toLocaleDateString()}
                 </div>
               )}
             </div>
-            <button onClick={handleEditClick} className={styles.editButton}>
-              Edit
-            </button>
-            <button onClick={handleRemoveTodo} className={styles.editButton}>
-              Remove
-            </button>
-          </div>
+          </>
         )}
       </div>
     </div>
