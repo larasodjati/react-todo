@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.appContainer {
+    /* Styles for app container */
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 50%;
+    margin: 0 auto;
+    top: 0;
+    background-color: #f3e9e8;
+    min-height: 100vh;
+}
+
+.mainHeader{
+    /* Styles for main header */
+    font-size: 2.4em;
+    font-family: 'Alegreya Sans SC', Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #FF5841;
+    margin-bottom:50px;
+}
+
+.headerContainer {
+    /* Styles for header container */
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.headerLine {
+    /* Styles for header line */
+    border-top: 10px;
+    border: solid 1px gainsboro;
+    width: 75%; 
+    margin:25px; 
+}
+
+.addTodoBtn, .viewCalendarBtn {
+    /* Styles for addTodoButton and calendar button */
+    align-self: center;
+    background-color: #fff;
+    background-image: none;
+    background-position: 0 100%;
+    background-repeat: repeat no-repeat;
+    background-size: 5px 3px;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style:groove;
+    border-color: #ede6e6;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    box-sizing: border-box;
+    color: #41403e;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    line-height: 23px;
+    outline: none;
+    padding: .75rem;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.addTodoBtn:hover,
+.viewCalendarBtn:hover {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+    transform: translate3d(0, 3px, 0);
+}
+
+.addTodoBtn:focus,
+.viewCalendarBtn:focus {
+    background-color: #ffdeda;
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+.searchForm {
+    /* Styles for search bar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    transform: translate(-3%, -3%);
+    transition: all 1s;
+    width:50px;
+    height: 50px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.searchInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 42.5px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.fa {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #07051a;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 0.5s;
+}
+
+.searchForm:hover {
+    width: 250px;
+    cursor: pointer;
+}
+
+.searchForm:hover input {
+    display: block;
+}
+
+.searchForm:hover .fa {
+    background: #07051a;
+    color: white;
+}
