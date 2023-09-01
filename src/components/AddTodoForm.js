@@ -95,10 +95,18 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
                   onChange={handleDueDateChange}
                 />
               </div>
-              <button type="submit">Add</button>
-              <button type="button" onClick={handleCancelAdd}>
-                Cancel
-              </button>
+              <div className={styles.buttonGroup}>
+                <button type="submit" className={styles.addButton}>
+                  Add
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCancelAdd}
+                  className={styles.cancelButton}
+                >
+                  Cancel
+                </button>
+              </div>
             </form>
           </>
         )}
