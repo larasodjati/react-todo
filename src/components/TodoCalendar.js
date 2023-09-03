@@ -29,7 +29,7 @@ function TodoCalendar() {
         className={styles.rbcEvent}
       />
       <button onClick={handleMainPageButton} className={styles.mainPageButton}>
-        Back to Main Page
+        <i class="fa-solid fa-arrow-left"> Back to Main Page</i>
       </button>
     </div>
   );
