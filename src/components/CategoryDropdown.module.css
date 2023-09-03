@@ -35,18 +35,18 @@
 
 .categoryBtn {
     align-self: center;
-    background-color: #f9e3d2;
+    background-color: #0fa884;
     background-image: none;
     background-position: 0 100%;
     background-repeat: repeat no-repeat;
     background-size: 5px 3px;
     border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
     border-style: groove;
-    border-color: #f9e3d2;
+    border-color: #0fa884;
     border-width: 1px;
     box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
     box-sizing: border-box;
-    color: #0d0d0c;
+    color: #fdfcfe;
     cursor: pointer;
     display: inline-block;
     font-family: 'Jost', sans-serif;
@@ -66,13 +66,14 @@
     touch-action: manipulation;
 }
 
-/* .categoryBtn:hover {
+.categoryBtn:hover {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
     transform: translate3d(0, 2px, 0);
-} */
+}
 
 .categoryBtn:focus{
-    background-color: #ffdeda;
+    background-color: #3A4F8A;
+    color:#fdfcfe;
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 

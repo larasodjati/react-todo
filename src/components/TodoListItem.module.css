@@ -1,9 +1,11 @@
 /* Styling for the item container */
 .itemContainer {
     border: 1px solid #cccccc;
+    border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
-    background-color:#dbe5dd ;
+    background-color: #fdfcfe;
+    position: relative;
 }
 
 /* Styling for the todo item */
@@ -11,6 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 /* Styling for the title container */
@@ -26,6 +29,7 @@
     font-weight: bold;
     font-size: 1.4em;
     font-family: 'Figtree', Arial, Helvetica, sans-serif;
+    color: #545493;
 }
 
 /* Styling for the flexible space */
@@ -43,16 +47,21 @@
 
 /* Styling for edit and delete buttons */
 .editButton {
-    background-color: #112044;
-    color: #cccccc;
+    background-color: transparent;
+    color: #112044;
     border: none;
     cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s;
 }
 
-.editButton:hover {
-    background-color: #fc5ebd;
-    color: #121212;
-    border: 1px solid #5b5a5a;
+.editButton:hover, 
+.updateButton:hover {
+    transform: scale(1.2);
+}
+
+.editButton i{
+    font-size: 20px;
 }
 /* Styling for subattribute container */
 .subattributeContainer {
@@ -72,3 +81,56 @@
     color: #5d5a59;
     margin: 0 10px;
 }
+
+/* Styling for the editing block */
+.editingBlock {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f7;
+    padding: 16px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
+    margin: -20px;
+}
+
+/* Styling for the input fields and select elements */
+.inputFields,
+.selectFields {
+    padding: 8px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    flex-grow: 1;
+    font-size: 1.2em;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+}
+
+.editingBlock label {
+    font-size: 1.2em;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+}
+
+/* Styling for the button container */
+.updateBtnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items:flex-end;
+    margin-bottom: 10px;
+ 
+}
+
+/* Styling for the "Cancel" and "Update" buttons */
+.updateButton {
+    background-color: #112044;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+

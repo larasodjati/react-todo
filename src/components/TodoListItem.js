@@ -120,12 +120,20 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
                 className={styles.inputFields}
               />
             </label>
-            <button onClick={handleCancelClick} className={styles.editButton}>
-              Cancel
-            </button>
-            <button onClick={handleUpdateClick} className={styles.editButton}>
-              Update
-            </button>
+            <div className={styles.updateBtnContainer}>
+              <button
+                onClick={handleCancelClick}
+                className={styles.updateButton}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleUpdateClick}
+                className={styles.updateButton}
+              >
+                Update
+              </button>
+            </div>
           </div>
         ) : (
           // Display Mode
@@ -142,13 +150,13 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
               <div className={styles.flexibleSpace}></div>
               <div className={styles.todoListBtnContainer}>
                 <button onClick={handleEditClick} className={styles.editButton}>
-                  Edit
+                  <i className="fas fa-file-pen"></i>
                 </button>
                 <button
                   onClick={handleRemoveTodo}
                   className={styles.editButton}
                 >
-                  Remove
+                  <i className="fas fa-trash-alt"></i>
                 </button>
               </div>
             </div>
