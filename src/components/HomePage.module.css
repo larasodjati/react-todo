@@ -1,0 +1,42 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Prevent page scrolling */
+}
+
+.heroSection {
+    background-color: #ffe6af;
+    padding: 2rem;
+    text-align: center;
+    height: 100vh;
+    /* Make the hero section full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerHomepage {
+    font-size: 2rem;
+    color: #ff5841;
+    margin-bottom: 1rem;
+}
+
+.homeDescription {
+    font-size: 1.2rem;
+    color: #3a4f8a;
+    margin-bottom: 2rem;
+}
+
+.homeButton {
+    background-color: #0fa884;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
