@@ -6,7 +6,6 @@ body {
 
 /* Styling for app container */
 .appContainer {
-
     display: flex;
     flex-direction:column;
     align-items: center;
@@ -26,6 +25,10 @@ body {
     margin-bottom:50px;
 }
 
+.mainHeaderLink{
+    text-decoration: none;
+}
+
 /* Styling for header container */
 .headerContainer {
     display: flex;
@@ -42,7 +45,7 @@ body {
 }
 
 /* Styles for addTodoButton and calendar button */
-.addTodoBtn, .viewCalendarBtn {
+.addTodoBtn, .viewCalendarBtn, .overviewBtn {
     align-self: center;
     background-color: #0fa884;
     background-image: none;

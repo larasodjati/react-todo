@@ -1,0 +1,114 @@
+.overviewContainer {
+    display: flex;
+    flex-direction: column;
+    background-color:#ffe6af;
+    font-size: 1.4em;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    top: 0;
+    min-height: 100vh;
+    position:relative;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.todoListPageButton {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    font-size: 1.2 em;
+    color: #E9EEF0;
+    background-color: #051e45;
+    border: 2px solid #fefefe;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    position: absolute;
+    left: 20px;
+}
+
+.todoListPageButton:hover {
+    transform: scale(1.1);
+}
+.overviewContainer  h2 {
+    margin: 20px 0px 50px 0px;
+    color: #FF5841;
+}
+
+
+.overviewSum {
+    display: flex;
+    justify-content: space-between;
+}
+
+.overviewBox {
+    border: 1px solid #cdcbcb;
+    padding: 10px;
+    background-color: #4e689c;
+    color:#f9f6ff;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    transition: all 0.3s ease;
+}
+
+.completedTasks {
+    font-size: 1.0em;
+    font-weight: bold;
+    text-align: center;
+    margin: auto 0;
+    transition: font-size 0.3s ease, margin 0.3s ease;
+}
+
+.taskCount {
+    font-size: 1.4em;
+    margin-top: 50px;
+    transition: font-size 0.3s ease, margin 0.3s ease;
+}
+
+.overviewBox:hover {
+    transform: scale(1.05);
+}
+
+.chartContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+.overviewContainer h3 {
+    margin: 70px 0px 50px 0px;
+}
+
+.tooltip {
+    width: 140px;
+    background-color: #cccccc;
+    font-size: 1.0em;
+}
+
+.cartesianGrid {
+    stroke:#919191;
+    stroke-dasharray: 5 5; 
+}
+
+.legendChart {
+    text-align: Left;
+    margin-top: 0;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.legendText {
+    font-weight: bold;
+    color: #4e689c;
+    
+}
+

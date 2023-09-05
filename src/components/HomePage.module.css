@@ -1,9 +1,5 @@
-
-body {
-    margin: 0;
-    padding: 0;
+.noScroll {
     overflow: hidden;
-    /* Prevent page scrolling */
 }
 
 .heroSection {
@@ -11,7 +7,6 @@ body {
     padding: 2rem;
     text-align: center;
     height: 100vh;
-    /* Make the hero section full height of the viewport */
     display: flex;
     flex-direction: column;
     justify-content: center;
