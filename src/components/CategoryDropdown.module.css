@@ -35,14 +35,14 @@
 
 .categoryBtn {
     align-self: center;
-    background-color: #0fa884;
+    background-color: #d1989d;
     background-image: none;
     background-position: 0 100%;
     background-repeat: repeat no-repeat;
     background-size: 5px 3px;
     border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
     border-style: groove;
-    border-color: #0fa884;
+    border-color: #d1989d;
     border-width: 1px;
     box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
     box-sizing: border-box;
@@ -56,7 +56,7 @@
     outline: none;
     padding: .75rem;
     text-decoration: none;
-    transition: all 235ms ease-in-out;
+    transition: all 250ms ease-in-out;
     border-bottom-left-radius: 15px 255px;
     border-bottom-right-radius: 225px 15px;
     border-top-left-radius: 255px 15px;
@@ -72,7 +72,7 @@
 }
 
 .categoryBtn:focus{
-    background-color: #3A4F8A;
+    background-color: #444545;
     color:#fdfcfe;
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }

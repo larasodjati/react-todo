@@ -1,7 +1,6 @@
 .overviewContainer {
     display: flex;
     flex-direction: column;
-    background-color:#ffe6af;
     font-size: 1.4em;
     font-family: 'Figtree', Arial, Helvetica, sans-serif;
     justify-content: flex-start;
@@ -37,7 +36,9 @@
 }
 .overviewContainer  h2 {
     margin: 20px 0px 50px 0px;
-    color: #FF5841;
+    color: #444545;
+    font-family: 'Alegreya Sans SC', Arial, Helvetica, sans-serif;
+    font-size: 2em;
 }
 
 

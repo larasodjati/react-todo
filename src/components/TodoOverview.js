@@ -15,7 +15,7 @@ import {
 
 import styles from './TodoOverview.module.css';
 
-const COLORS = ['#FC9E00', '#223D7B', '#FE634B', '#00A781', '#FCC227'];
+const COLORS = ['#3F2344', '#223D7B', '#FE634B', '#00A781', '#3c3744'];
 
 function TodoOverview() {
   const location = useLocation();
@@ -62,27 +62,30 @@ function TodoOverview() {
     };
   });
 
-  /// Calculate pending tasks by category
+  // Calculate pending todo by category
   const pendingCategories = {};
 
-  todoList.forEach((todo) => {
+  todoList.map((todo) => {
     const category = todo.category;
     if (!todo.completed) {
       if (!pendingCategories[category]) {
         pendingCategories[category] = [todo];
       } else {
-        pendingCategories[category].push(todo);
+        pendingCategories[category] = pendingCategories[category].concat(todo);
       }
+      console.log('pendingCategories', pendingCategories[category]);
     }
+    return pendingCategories[category];
   });
 
   // Convert the pendingCategories object into an array of objects
   const pendingCategoriesArray = Object.keys(pendingCategories).map(
     (category) => ({
       name: category,
-      tasks: pendingCategories[category]
+      todos: pendingCategories[category]
     })
   );
+
   return (
     <div className={styles.overviewContainer}>
       <div className={styles.buttonContainer}>
