@@ -135,7 +135,7 @@ function TodoOverview() {
       <PieChart width={600} height={300}>
         <Pie
           data={pendingCategoriesArray}
-          dataKey="tasks.length"
+          dataKey="todos.length"
           nameKey="name"
           cx="50%"
           cy="50%"
