@@ -187,11 +187,11 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
 TodoListItem.propTypes = {
   todo: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    title: PropTypes.string,
-    priority: PropTypes.string,
-    dueDate: PropTypes.string,
-    completed: PropTypes.bool,
-    completedAt: PropTypes.string
+    title: PropTypes.string.isRequired,
+    priority: PropTypes.string.isRequired,
+    dueDate: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+    completedAt: PropTypes.string.isRequired
   }),
   onRemoveTodo: PropTypes.func,
   onUpdateTodo: PropTypes.func

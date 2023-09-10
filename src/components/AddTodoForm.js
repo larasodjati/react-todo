@@ -116,16 +116,9 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
 }
 
 AddTodoForm.propTypes = {
-  onAddTodo: PropTypes.func,
-  onClose: PropTypes.func,
-  todoTitle: PropTypes.string,
-  handleTitleChange: PropTypes.func,
-  todoPriority: PropTypes.string,
-  handlePriorityChange: PropTypes.func,
-  todoCategory: PropTypes.string,
-  handleCategoryChange: PropTypes.func,
-  todoDueDate: PropTypes.string,
-  handleDueDateChange: PropTypes.func
+  onAddTodo: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  isAddingTodo: PropTypes.bool.isRequired
 };
 
 export default AddTodoForm;
