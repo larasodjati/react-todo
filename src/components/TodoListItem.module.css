@@ -1,58 +1,136 @@
+/* Styling for the item container */
 .itemContainer {
-    max-width: 1000px;
-    padding: 50px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.listItem {
-    /* Styles for both editing and non-editing modes */
-    font-size: 1.4em;
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    color: #7C7C7C;
-    text-align: left;
-    width: 100%;
-    max-width: 100%;
-    padding: 20px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.editingBlock {
-    /* Styles for the editing block */
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
     padding: 10px;
-    border: 1px solid #808484;
-    background-color: #E9EEF0;
+    margin-bottom: 10px;
+    background-color: #fdfcfe;
+    position: relative;
 }
 
+/* Styling for the todo item */
+.listItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Styling for the title container */
+.titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Styling for the title */
+.todoListTitle {
+    font-weight: bold;
+    font-size: 1.4em;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+    color: #545493;
+}
+
+/* Styling for the flexible space */
+.flexibleSpace {
+    flex-grow: 1;
+}
+
+/* Styling for button container */
+.todoListBtnContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  
+}
+
+/* Styling for edit and delete buttons */
+.editButton {
+    background-color: transparent;
+    color: #112044;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s;
+}
+
+.editButton:hover, 
+.updateButton:hover {
+    transform: scale(1.2);
+}
+
+.editButton i{
+    font-size: 20px;
+}
+/* Styling for subattribute container */
+.subattributeContainer {
+    margin-top: 10px;
+    border-top: 1px dashed #bcbbbb;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: wrap;
+    align-items: center;
+    text-align: center;
+}
+
+/* Styling for subattributes */
+.subattribute {
+    font-size: 1.2em;
+    font-family: 'Figtree', Georgia, 'Times New Roman', Times, serif;
+    color: #5d5a59;
+    margin: 0 10px;
+}
+
+/* Styling for the editing block */
+.editingBlock {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f7;
+    padding: 16px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
+    margin: -20px;
+}
+
+/* Styling for the input fields and select elements */
 .inputFields,
 .selectFields {
-    /* Styles for the input fields */
-    padding: 5px;
-    border: 1px solid #808484;
-    border-radius: 5px;
+    padding: 8px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    flex-grow: 1;
+    font-size: 1.2em;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
 }
 
-.listItem input,
-.listItem select,
-.listItem label {
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    color: #7C7C7C;
+.editingBlock label {
+    font-size: 1.2em;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
 }
 
-.listItem button,
-.editButton {
-    /* Styles for buttons */
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    font-size: 1.2 em;
-    color: #E9EEF0;
-    background-color: #191C20;
+/* Styling for the button container */
+.updateBtnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items:flex-end;
+    margin-bottom: 10px;
+ 
+}
+
+/* Styling for the "Cancel" and "Update" buttons */
+.updateButton {
+    background-color: #112044;
+    color: #ffffff;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
 }
+

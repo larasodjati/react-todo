@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Outlet, useNavigate } from 'react-router-dom';
+import { useParams, Outlet, useNavigate, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
@@ -234,10 +234,18 @@ function TodoContainer({ tableName, isAddTodoForm }) {
   const handleViewCalendarClick = () => {
     navigate('/calendar', { state: { events: calendarEvents } });
   };
+
+  // handle overview button
+  const handleOverviewButton = () => {
+    navigate('/overview', { state: { todoList } });
+  };
+
   return (
     <>
       <div className={styles.appContainer}>
-        <h1 className={styles.mainHeader}>Todo List</h1>
+        <Link to="/" className={styles.mainHeaderLink}>
+          <h1 className={styles.mainHeader}>Todo List</h1>
+        </Link>
         <div className={styles.headerContainer}>
           <CategoryDropdown
             categories={['All', 'Work', 'Personal', 'Birthday', 'Wishlist']}
@@ -270,6 +278,10 @@ function TodoContainer({ tableName, isAddTodoForm }) {
             className={styles.viewCalendarBtn}
           >
             View Calendar
+          </button>
+
+          <button onClick={handleOverviewButton} className={styles.overviewBtn}>
+            Go to Overview
           </button>
         </div>
 

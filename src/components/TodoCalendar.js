@@ -15,7 +15,7 @@ function TodoCalendar() {
   const navigate = useNavigate(); // useNavigate to get navigate function
 
   const handleMainPageButton = () => {
-    navigate('/');
+    navigate('/todo-list');
   };
   return (
     <div className={styles.rbcCalendar}>
@@ -29,7 +29,7 @@ function TodoCalendar() {
         className={styles.rbcEvent}
       />
       <button onClick={handleMainPageButton} className={styles.mainPageButton}>
-        Back to Main Page
+        <i className="fa-solid fa-arrow-left"> Back to Todo List</i>
       </button>
     </div>
   );
