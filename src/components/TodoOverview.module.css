@@ -96,14 +96,14 @@
 }
 
 .cartesianGrid {
-    stroke:#919191;
+    stroke:#797878;
     stroke-dasharray: 5 5; 
 }
 
 .legendChart {
     text-align: Left;
     margin-top: 0;
-    border: 1px solid #ccc;
+    border: 1px solid #807e7e;
     padding: 10px;
 }
 

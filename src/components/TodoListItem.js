@@ -144,8 +144,15 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
                   type="checkbox"
                   checked={completed}
                   onChange={handleCompletedToggle}
+                  className={styles.checkbox}
                 />
-                <span className={styles.todoListTitle}>{todo.title}</span>
+                <span
+                  className={`${styles.todoListTitle} ${
+                    completed ? styles.completedTitle : ''
+                  }`}
+                >
+                  {todo.title}
+                </span>
               </label>
               <div className={styles.flexibleSpace}></div>
               <div className={styles.todoListBtnContainer}>
