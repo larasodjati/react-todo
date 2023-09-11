@@ -190,8 +190,8 @@ TodoListItem.propTypes = {
     title: PropTypes.string.isRequired,
     priority: PropTypes.string.isRequired,
     dueDate: PropTypes.string.isRequired,
-    completed: PropTypes.bool.isRequired,
-    completedAt: PropTypes.string.isRequired
+    completed: PropTypes.bool,
+    completedAt: PropTypes.string
   }),
   onRemoveTodo: PropTypes.func,
   onUpdateTodo: PropTypes.func
