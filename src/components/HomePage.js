@@ -14,7 +14,7 @@ function HomePage() {
     <div className={styles.heroSection}>
       <h1 className={styles.headerHomepage}>Welcome to Todo List</h1>
       <Link to="/todo-list">
-        <button className={styles.homeButton}> My Todo List</button>
+        <button className={styles.homeButton}>My Todo List</button>
       </Link>
     </div>
   );

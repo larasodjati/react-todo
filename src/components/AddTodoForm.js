@@ -58,6 +58,9 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
       }`}
     >
       <div className={styles.modalContent}>
+        <button className={styles.closeButton} onClick={handleCancelAdd}>
+          X
+        </button>
         {isAddingTodo && (
           <>
             <h2>Add New Todo</h2>
@@ -99,13 +102,13 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
                 <button type="submit" className={styles.addButton}>
                   Add
                 </button>
-                <button
+                {/* <button
                   type="button"
                   onClick={handleCancelAdd}
                   className={styles.cancelButton}
                 >
                   Cancel
-                </button>
+                </button> */}
               </div>
             </form>
           </>
@@ -116,16 +119,9 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
 }
 
 AddTodoForm.propTypes = {
-  onAddTodo: PropTypes.func,
-  onClose: PropTypes.func,
-  todoTitle: PropTypes.string,
-  handleTitleChange: PropTypes.func,
-  todoPriority: PropTypes.string,
-  handlePriorityChange: PropTypes.func,
-  todoCategory: PropTypes.string,
-  handleCategoryChange: PropTypes.func,
-  todoDueDate: PropTypes.string,
-  handleDueDateChange: PropTypes.func
+  onAddTodo: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  isAddingTodo: PropTypes.bool.isRequired
 };
 
 export default AddTodoForm;

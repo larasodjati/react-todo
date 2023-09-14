@@ -31,8 +31,8 @@ function CategoryDropdown({ categories, onSelectCategory, selectedCategory }) {
 }
 
 CategoryDropdown.propTypes = {
-  categories: PropTypes.array,
-  onSelectCategory: PropTypes.func,
+  categories: PropTypes.array.isRequired,
+  onSelectCategory: PropTypes.func.isRequired,
   selectedCategory: PropTypes.string
 };
 export default CategoryDropdown;

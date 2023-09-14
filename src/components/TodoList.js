@@ -25,7 +25,7 @@ TodoList.propTypes = {
   todoList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      title: PropTypes.string
+      title: PropTypes.string.isRequired
     })
   ),
   onRemoveTodo: PropTypes.func,

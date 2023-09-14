@@ -144,8 +144,15 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
                   type="checkbox"
                   checked={completed}
                   onChange={handleCompletedToggle}
+                  className={styles.checkbox}
                 />
-                <span className={styles.todoListTitle}>{todo.title}</span>
+                <span
+                  className={`${styles.todoListTitle} ${
+                    completed ? styles.completedTitle : ''
+                  }`}
+                >
+                  {todo.title}
+                </span>
               </label>
               <div className={styles.flexibleSpace}></div>
               <div className={styles.todoListBtnContainer}>
@@ -187,9 +194,9 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
 TodoListItem.propTypes = {
   todo: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    title: PropTypes.string,
-    priority: PropTypes.string,
-    dueDate: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    priority: PropTypes.string.isRequired,
+    dueDate: PropTypes.string.isRequired,
     completed: PropTypes.bool,
     completedAt: PropTypes.string
   }),
