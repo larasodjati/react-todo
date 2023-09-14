@@ -55,6 +55,14 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     const url = `${apiBaseUrl}?sort[0][field]=title&sort[0][direction]=asc`;
     try {
       const data = await fetchAndCheckResponse(url, options);
+      const sortData = (objectA, objectB) =>
+        objectA.fields.title < objectB.fields.title
+          ? -1
+          : objectA.fields.title > objectB.fields.title
+          ? 1
+          : 0;
+
+      data.records.sort(sortData);
       const todos = data.records.map((todo) => {
         const newTodo = {
           id: todo.id,
