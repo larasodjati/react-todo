@@ -52,7 +52,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
         Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
       }
     };
-    const url = `${apiBaseUrl}?view=Grid%20view`;
+    const url = `${apiBaseUrl}?sort[0][field]=title&sort[0][direction]=asc`;
     try {
       const data = await fetchAndCheckResponse(url, options);
       const todos = data.records.map((todo) => {
