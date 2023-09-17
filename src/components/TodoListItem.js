@@ -21,12 +21,19 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   };
 
   const handleUpdateClick = () => {
+    // Convert the displayed date value (newDueDate) back to UTC time
+    const dueDateUTC = new Date(newDueDate);
+    const offsetDueDate = dueDateUTC.getTimezoneOffset() * 60000;
+    const formattedDueDate = new Date(
+      dueDateUTC.getTime() + offsetDueDate
+    ).toISOString(); // Convert back to ISO string
+
     onUpdateTodo(
       todo.id,
       newTitle,
       newPriority,
       newCategory,
-      newDueDate,
+      formattedDueDate,
       completed,
       completedAt
     );
