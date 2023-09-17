@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import InputWithLabel from './InputWithLabel';
 import styles from './AddTodoForm.module.css';
+import { capitalizedTitle } from '../utils/utils';
 
 function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
   const [todoTitle, setTodoTitle] = useState('');
@@ -11,7 +12,8 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
 
   const handleTitleChange = (event) => {
     const newTodoTitle = event.target.value;
-    setTodoTitle(newTodoTitle);
+    const newCapitalizedTodoTitle = capitalizedTitle(newTodoTitle);
+    setTodoTitle(newCapitalizedTodoTitle);
   };
 
   const handlePriorityChange = (event) => {
@@ -102,13 +104,6 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
                 <button type="submit" className={styles.addButton}>
                   Add
                 </button>
-                {/* <button
-                  type="button"
-                  onClick={handleCancelAdd}
-                  className={styles.cancelButton}
-                >
-                  Cancel
-                </button> */}
               </div>
             </form>
           </>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TodoListItem.module.css';
+import { capitalizedTitle } from '../utils/utils';
 
 function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -78,7 +79,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
           <div className={styles.editingBlock}>
             <input
               type="text"
-              value={newTitle}
+              value={capitalizedTitle(newTitle)}
               onChange={handleTitleChange}
               className={styles.inputFields}
             />
