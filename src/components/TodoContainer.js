@@ -301,6 +301,9 @@ function TodoContainer({ tableName, isAddTodoForm }) {
           <h1 className={styles.mainHeader}>Todo List</h1>
         </Link>
         <div className={styles.headerContainer}>
+          <button onClick={handleOverviewButton} className={styles.overviewBtn}>
+            Overview
+          </button>
           <CategoryDropdown
             categories={['All', 'Work', 'Personal', 'Birthday', 'Wishlist']}
             onSelectCategory={onSelectCategory}
@@ -324,18 +327,14 @@ function TodoContainer({ tableName, isAddTodoForm }) {
             }}
             className={styles.addTodoBtn}
           >
-            Add New Todo
+            Add Todo
           </button>
 
           <button
             onClick={handleViewCalendarClick}
             className={styles.viewCalendarBtn}
           >
-            View Calendar
-          </button>
-
-          <button onClick={handleOverviewButton} className={styles.overviewBtn}>
-            Go to Overview
+            Calendar
           </button>
         </div>
 

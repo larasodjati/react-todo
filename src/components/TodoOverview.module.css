@@ -1,7 +1,7 @@
 .overviewContainer {
     display: flex;
     flex-direction: column;
-    font-size: 1.4em;
+    font-size: 1.4rem;
     font-family: 'Figtree', Arial, Helvetica, sans-serif;
     justify-content: flex-start;
     align-items: center;
@@ -19,8 +19,8 @@
 }
 
 .todoListPageButton {
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    font-size: 1.2 em;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
     color: #E9EEF0;
     background-color: #051e45;
     border: 2px solid #fefefe;
@@ -38,9 +38,12 @@
     margin: 20px 0px 50px 0px;
     color: #444545;
     font-family: 'Alegreya Sans SC', Arial, Helvetica, sans-serif;
-    font-size: 2em;
+    font-size: 4rem;
 }
 
+.overviewContainer h3 {
+    font-size: 2rem;
+}
 
 .overviewSum {
     display: flex;
@@ -61,7 +64,8 @@
 }
 
 .completedTasks {
-    font-size: 1.0em;
+    font-size: 1.4rem;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-align: center;
     margin: auto 0;
@@ -69,7 +73,7 @@
 }
 
 .taskCount {
-    font-size: 1.4em;
+    font-size: 2rem;
     margin-top: 50px;
     transition: font-size 0.3s ease, margin 0.3s ease;
 }
@@ -92,7 +96,8 @@
 .tooltip {
     width: 140px;
     background-color: #cccccc;
-    font-size: 1.0em;
+    font-size: 1.0rem;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
 }
 
 .cartesianGrid {
@@ -109,7 +114,8 @@
 
 .legendText {
     font-weight: bold;
+    font-size: 1.2rem;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
     color: #4e689c;
     
 }
-

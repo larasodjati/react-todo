@@ -154,6 +154,7 @@ function TodoOverview() {
           verticalAlign="middle"
           align="right"
           formatter={(value, entry) => ` ${value}`}
+          className={styles.legendPie}
         />
       </PieChart>
     </div>

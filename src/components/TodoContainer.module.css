@@ -19,7 +19,7 @@ body {
 
 /* Styling for main header */
 .mainHeader{
-    font-size: 3em;
+    font-size: 4rem;
     font-family: 'Alegreya Sans SC', Arial, Helvetica, sans-serif;
     color: #444545;
     margin-bottom:50px;
@@ -61,8 +61,8 @@ body {
     color:#fdfcfe;
     cursor: pointer;
     display: inline-block;
-    font-family: 'Jost', sans-serif;
-    font-size: 1rem;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+    font-size: 1.4rem;
     font-weight: 700;
     line-height: 23px;
     outline: none;
@@ -123,7 +123,8 @@ body {
     outline: 0;
     border: 0;
     display: none;
-    font-size: 1em;
+    font-size: 1.4rem;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
     border-radius: 20px;
     padding: 0 20px;
 }
@@ -131,15 +132,15 @@ body {
 .searchForm .fa {
     box-sizing: border-box;
     padding: 10px;
-    width: 42.5px;
-    height: 42.5px;
+    width: 45px;
+    height: 45px;
     position: absolute;
     top: 0;
     right: 0;
     border-radius: 50%;
     color: #fdfcfe;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.4rem;
     transition: all 0.5s;
 }
 
