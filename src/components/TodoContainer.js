@@ -6,6 +6,7 @@ import TodoList from './TodoList';
 import CategoryDropdown from './CategoryDropdown';
 import styles from './TodoContainer.module.css';
 import TodoFilter from './TodoFilter';
+import TodoListPage from '../page/TodoListPage';
 
 function TodoContainer({ tableName, isAddTodoForm }) {
   const { category } = useParams();
@@ -23,6 +24,8 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     priority: 'All'
   });
   const [sortBy, setSortBy] = useState('Title A-Z');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   const onSelectCategory = (newCategory) => {
     setSelectedCategory(newCategory);
@@ -295,6 +298,19 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     navigate('/overview', { state: { todoList } });
   };
 
+  // handle pagination
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // calculate the index range for the current page
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const itemsForCurrentPage = filteredAndSortedTodoList.slice(
+    startIndex,
+    endIndex
+  );
+
   return (
     <>
       <div className={styles.appContainer}>
@@ -369,9 +385,16 @@ function TodoContainer({ tableName, isAddTodoForm }) {
           <>
             <Outlet />
             <TodoList
-              todoList={filteredAndSortedTodoList}
+              todoList={itemsForCurrentPage}
               onRemoveTodo={removeTodo}
               onUpdateTodo={updateTodo}
+            />
+            <TodoListPage
+              currentPage={currentPage}
+              totalPages={Math.ceil(
+                filteredAndSortedTodoList.length / itemsPerPage
+              )}
+              onChangePage={handlePageChange}
             />
           </>
         )}
