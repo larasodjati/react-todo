@@ -133,6 +133,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     const addedTodo = await postTodo(newTodo);
     if (addedTodo) {
       setTodoList([...todoList, { ...newTodo }]);
+      fetchData();
     }
   };
 
