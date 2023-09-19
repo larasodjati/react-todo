@@ -25,7 +25,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
   });
   const [sortBy, setSortBy] = useState('Title A-Z');
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   const onSelectCategory = (newCategory) => {
     setSelectedCategory(newCategory);
@@ -303,6 +303,11 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     setCurrentPage(pageNumber);
   };
 
+  const handleItemsPerPageChange = (newItemsPerPage) => {
+    setItemsPerPage(newItemsPerPage);
+    setCurrentPage(1);
+  };
+
   // calculate the index range for the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -395,6 +400,8 @@ function TodoContainer({ tableName, isAddTodoForm }) {
                 filteredAndSortedTodoList.length / itemsPerPage
               )}
               onChangePage={handlePageChange}
+              itemsPerPage={itemsPerPage}
+              onItemsPerPageChange={handleItemsPerPageChange}
             />
           </>
         )}

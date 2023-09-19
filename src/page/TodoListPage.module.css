@@ -1,0 +1,48 @@
+.pageContainer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.itemsPerPage, .itemsPerPage select {
+    font-size: 1.6rem;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+.itemsPerPage select {
+    margin-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pageContainer button {
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+    background: transparent;
+}
+
+.pageContainer button:not(.active):hover {
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #d1989d;
+    color:#fcfdfe;
+}
+.pageContainer button.active {
+    background-color: #444545;
+    color: #fefefe;
+    border-radius: 5px;
+    font-weight: bold;
+   
+}
+
