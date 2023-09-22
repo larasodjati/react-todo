@@ -1,5 +1,7 @@
 .todoList{
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
     gap: 30px;
 }

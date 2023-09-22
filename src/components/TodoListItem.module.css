@@ -198,3 +198,79 @@
     font-family: 'Figtree', Arial, Helvetica, sans-serif;
 }
 
+@media only screen and (max-width: 600px) {
+    .itemContainer {
+        background-color: #fdf5d6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 2px auto;
+        max-width: 100%;
+        padding: 3px;
+        box-sizing: border-box; 
+    }
+
+    .todoListTitle {
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .subattributeContainer {
+        padding-top: 5px;
+        display: flex;
+        flex-direction:wrap;
+        flex-wrap: wrap;
+        align-items: center;
+        text-align: center;
+    }
+
+    .subattribute {
+        font-size: 0.75rem;
+        margin: 0;    
+    }
+
+    .editButton i {
+        font-size: 1rem;
+    }
+
+    .todoListBtnContainer {
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    
+
+    .flexibleSpace {
+        flex-grow: 0;
+    }
+    
+    .checkbox {
+        width:12.5px;
+        height: 12.5px;
+    }
+
+    .checkbox:checked::before {
+        font-size: 0.8rem;
+    }
+   
+    .editingBlock {
+        background-color: none;
+        padding: 16px;
+    }
+
+    .inputFields,
+    .selectFields {
+        font-size: 0.85rem;
+    }
+
+    .editingBlock label {
+        font-size: 0.85rem;
+    }
+
+    .updateButton {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }                               
+}
+

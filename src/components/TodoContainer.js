@@ -25,7 +25,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
   });
   const [sortBy, setSortBy] = useState('Title A-Z');
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [todosPerPage, setTodosPerPage] = useState(5);
 
   const onSelectCategory = (newCategory) => {
     setSelectedCategory(newCategory);
@@ -303,15 +303,15 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     setCurrentPage(pageNumber);
   };
 
-  const handleItemsPerPageChange = (newItemsPerPage) => {
-    setItemsPerPage(newItemsPerPage);
+  const handleTodosPerPageChange = (newTodosPerPage) => {
+    setTodosPerPage(newTodosPerPage);
     setCurrentPage(1);
   };
 
   // calculate the index range for the current page
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const itemsForCurrentPage = filteredAndSortedTodoList.slice(
+  const startIndex = (currentPage - 1) * todosPerPage;
+  const endIndex = startIndex + todosPerPage;
+  const todosForCurrentPage = filteredAndSortedTodoList.slice(
     startIndex,
     endIndex
   );
@@ -390,18 +390,18 @@ function TodoContainer({ tableName, isAddTodoForm }) {
           <>
             <Outlet />
             <TodoList
-              todoList={itemsForCurrentPage}
+              todoList={todosForCurrentPage}
               onRemoveTodo={removeTodo}
               onUpdateTodo={updateTodo}
             />
             <TodoListPage
               currentPage={currentPage}
               totalPages={Math.ceil(
-                filteredAndSortedTodoList.length / itemsPerPage
+                filteredAndSortedTodoList.length / todosPerPage
               )}
               onChangePage={handlePageChange}
-              itemsPerPage={itemsPerPage}
-              onItemsPerPageChange={handleItemsPerPageChange}
+              todosPerPage={todosPerPage}
+              onTodosPerPageChange={handleTodosPerPageChange}
             />
           </>
         )}

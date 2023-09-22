@@ -33,7 +33,7 @@ body {
 .headerContainer {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 10px;
 }
 
 /* Styles for header line */
@@ -156,4 +156,43 @@ body {
 .searchForm:hover .fa {
     background: #07051a;
     color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        background-image: none;
+    }
+
+    .mainHeader {
+        font-size: 2.5rem;
+    }
+
+    .addTodoBtn,
+    .viewCalendarBtn,
+    .overviewBtn,
+    .searchForm {
+        padding: 0.2rem 0.2rem;
+        font-size: 0.6rem;
+            
+    }
+
+    .searchForm {
+        width: 25px;
+        height: 25px;
+    }
+
+    .searchForm:hover {
+        width: 100px;
+    }
+
+    .searchInput {
+        font-size: 0.75rem;
+        border-radius: 10px;
+        padding: 0 10px;
+        line-height: 10px;
+    }
+
+    .headerLine{
+        width:100%;
+    }
 }

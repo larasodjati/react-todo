@@ -6,8 +6,8 @@ function TodoListPage({
   currentPage,
   totalPages,
   onChangePage,
-  itemsPerPage,
-  onItemsPerPageChange
+  todosPerPage,
+  onTodosPerPageChange
 }) {
   const renderPageNumbers = () => {
     const pageNumbers = [];
@@ -27,30 +27,34 @@ function TodoListPage({
 
   return (
     <div className={styles.pageContainer}>
-      <div className={styles.itemsPerPage}>
+      <div className={styles.todosPerPage}>
         <label>Todos per page:</label>
         <select
-          value={itemsPerPage}
-          onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
+          value={todosPerPage}
+          onChange={(e) => onTodosPerPageChange(Number(e.target.value))}
         >
           <option value={5}>5</option>
           <option value={10}>10</option>
           <option value={20}>20</option>
         </select>
       </div>
-      <button
-        onClick={() => onChangePage(currentPage - 1)}
-        disabled={currentPage === 1}
-      >
-        <i className="fa-solid fa-angles-left"></i>
-      </button>
-      {renderPageNumbers()}
-      <button
-        onClick={() => onChangePage(currentPage + 1)}
-        disabled={currentPage === totalPages}
-      >
-        <i className="fa-solid fa-angles-right"></i>
-      </button>
+      <div className={styles.navigation}>
+        <button
+          onClick={() => onChangePage(currentPage - 1)}
+          disabled={currentPage === 1}
+          className={styles.previous}
+        >
+          <i className="fa-solid fa-angles-left"></i>
+        </button>
+        {renderPageNumbers()}
+        <button
+          onClick={() => onChangePage(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className={styles.next}
+        >
+          <i className="fa-solid fa-angles-right"></i>
+        </button>
+      </div>
     </div>
   );
 }
@@ -58,7 +62,7 @@ TodoListPage.propTypes = {
   currentPage: PropTypes.number,
   totalPages: PropTypes.number,
   onChangePage: PropTypes.func,
-  itemsPerPage: PropTypes.number,
-  onItemsPerPageChange: PropTypes.func
+  todosPerPage: PropTypes.number,
+  onTodosPerPageChange: PropTypes.func
 };
 export default TodoListPage;

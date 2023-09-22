@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
+  ResponsiveContainer,
   BarChart,
   Bar,
   XAxis,
@@ -114,49 +115,60 @@ function TodoOverview() {
       {/* Weekly Completion Chart */}
       <div className={styles.chartContainer}>
         <h3>Weekly Completion</h3>
-        <BarChart width={600} height={350} data={weeklyCompletionData}>
-          <XAxis dataKey="day" />
-          <YAxis />
-          <Tooltip className={styles.tooltip} />
-          <CartesianGrid className={styles.cartesianGrid} />
-          <Bar dataKey="completed" name="Todo completed" fill="#4e689c" />
-          <Legend className={styles.legendChart} />
-        </BarChart>
+        <div className={styles.chartWrapper}>
+          <BarChart
+            width={window.innerWidth <= 600 ? window.innerWidth - 40 : 600}
+            height={350}
+            data={weeklyCompletionData}
+          >
+            <XAxis dataKey="day" />
+            <YAxis />
+            <Tooltip className={styles.tooltip} />
+            <CartesianGrid className={styles.cartesianGrid} />
+            <Bar dataKey="completed" name="Todo completed" fill="#4e689c" />
+            <Legend className={styles.legendChart} />
+          </BarChart>
 
-        {/* Custom Legend for Date Range */}
-        <div className={styles.legendChart}>
-          <span className={styles.legendText}>Date:</span>{' '}
-          {weeklyCompletionData[0].day} - {weeklyCompletionData[6].day}
+          {/* Custom Legend for Date Range */}
+          <div className={styles.legendChart}>
+            <span className={styles.legendText}>Date:</span>{' '}
+            {weeklyCompletionData[0].day} - {weeklyCompletionData[6].day}
+          </div>
         </div>
       </div>
 
       {/* Pending Categories Pie Chart */}
       <h3>Pending Tasks by Category</h3>
-      <PieChart width={600} height={300}>
-        <Pie
-          data={pendingCategoriesArray}
-          dataKey="todos.length"
-          nameKey="name"
-          cx="50%"
-          cy="50%"
-          outerRadius={120}
-          label
-        >
-          {pendingCategoriesArray.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip className={styles.tooltip} />
-        <Legend
-          iconType="circle"
-          iconSize={10}
-          layout="vertical"
-          verticalAlign="middle"
-          align="right"
-          formatter={(value, entry) => ` ${value}`}
-          className={styles.legendPie}
-        />
-      </PieChart>
+      <ResponsiveContainer width="100%" maxWidth={600} height={300}>
+        <PieChart>
+          <Pie
+            data={pendingCategoriesArray}
+            dataKey="todos.length"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            outerRadius={120}
+            label
+          >
+            {pendingCategoriesArray.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <Tooltip className={styles.tooltip} />
+          <Legend
+            iconType="circle"
+            iconSize={10}
+            layout="horizontal"
+            verticalAlign="bottom"
+            align="center"
+            formatter={(value, entry) => ` ${value}`}
+            className={styles.legendPie}
+          />
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }

@@ -106,9 +106,8 @@
 }
 
 .legendChart {
-    text-align: Left;
-    margin-top: 0;
-    border: 1px solid #807e7e;
+    text-align: center;
+    margin: 0;
     padding: 10px;
 }
 
@@ -116,6 +115,65 @@
     font-weight: bold;
     font-size: 1.2rem;
     font-family: 'Figtree', Arial, Helvetica, sans-serif;
-    color: #4e689c;
-    
+    color: #4e689c;    
+}
+
+.chartWrapper {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .overviewContainer {
+        font-size: 0.75rem;
+    }
+
+    .todoListPageButton {
+        font-size: 0.6rem;
+        left:5px;
+    }
+
+    .overviewContainer h2 {
+        margin: 50px 0px;
+        font-size: 2.5rem;
+    }
+
+    .overviewContainer h3 {
+        font-size: 1.5rem;
+    }
+
+    .completedTasks {
+        font-size: 1.2rem;
+    }
+
+    .taskCount {
+        font-size: 1.8rem;
+    }
+
+    .tooltip {
+        width: 100px;
+        font-size: 0.75rem;
+    }
+
+    .chartWrapper {
+        max-width: 100%;        
+    }
+
+    .legendText {
+        font-size: 0.75rem;
+    }
+}    
+
+@media screen and (min-width: 601px) {
+    .chartContainer .legendPie {
+        position: absolute;
+        right: 10px;
+        /* Adjust this value to move the legend closer to the chart */
+        top: 50%;
+        /* Adjust this value to vertically center the legend */
+        transform: translateY(-50%);
+    }
 }
