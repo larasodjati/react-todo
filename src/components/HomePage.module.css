@@ -27,18 +27,6 @@
     margin-bottom: 1rem;
 }
 
-
-/* .homeButton {
-    background-color: #d1989d;
-    color: #ebeced;
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-} */
-
 .homeButton {
     all: unset;
     width: 200px;

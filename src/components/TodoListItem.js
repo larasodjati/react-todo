@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TodoListItem.module.css';
+import { capitalizedTitle } from '../utils/utils';
+import { formatDateToISOString } from '../utils/formatDate';
 
 function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -20,12 +22,16 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   };
 
   const handleUpdateClick = () => {
+    // convert Due Date into user friendly form
+    // refers to https://stackoverflow.com/questions/17545708/parse-date-without-timezone-javascript/39209842#39209842
+    const formattedDueDate = formatDateToISOString(newDueDate);
+
     onUpdateTodo(
       todo.id,
       newTitle,
       newPriority,
       newCategory,
-      newDueDate,
+      formattedDueDate,
       completed,
       completedAt
     );
@@ -78,7 +84,7 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
           <div className={styles.editingBlock}>
             <input
               type="text"
-              value={newTitle}
+              value={capitalizedTitle(newTitle)}
               onChange={handleTitleChange}
               className={styles.inputFields}
             />

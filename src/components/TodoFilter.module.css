@@ -1,0 +1,56 @@
+.filterForm {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+}
+
+.filterOptions,
+.sortOptions {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    padding: 0px;
+}
+
+.filterOptions label,
+.sortOptions label,
+.filterSelect,
+.sortSelect {
+    font-size: 1.4em;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+    margin-right: 10px;
+}
+
+.filterSelect,
+.sortSelect {
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.filterSelect,
+.sortSelect {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .filterOptions,
+    .sortOptions {
+        margin-right: 5px;
+        padding: 5px;
+    }
+    
+    .filterOptions label,
+    .sortOptions label,
+    .filterSelect,
+    .sortSelect {
+        font-size: 0.6rem;
+        margin-right: 5px;
+    }
+    
+    .filterSelect,
+    .sortSelect {
+        padding: 2px;
+    }
+}

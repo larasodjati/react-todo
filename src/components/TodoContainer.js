@@ -5,6 +5,8 @@ import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 import CategoryDropdown from './CategoryDropdown';
 import styles from './TodoContainer.module.css';
+import TodoFilter from './TodoFilter';
+import TodoListPage from '../page/TodoListPage';
 
 function TodoContainer({ tableName, isAddTodoForm }) {
   const { category } = useParams();
@@ -17,6 +19,13 @@ function TodoContainer({ tableName, isAddTodoForm }) {
   const [calendarEvents, setCalendarEvents] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(category || 'All');
   const [isAddingTodo, setIsAddingTodo] = useState(false);
+  const [filterOptions, setFilterOptions] = useState({
+    status: 'All',
+    priority: 'All'
+  });
+  const [sortBy, setSortBy] = useState('Title A-Z');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [todosPerPage, setTodosPerPage] = useState(5);
 
   const onSelectCategory = (newCategory) => {
     setSelectedCategory(newCategory);
@@ -127,6 +136,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     const addedTodo = await postTodo(newTodo);
     if (addedTodo) {
       setTodoList([...todoList, { ...newTodo }]);
+      fetchData();
     }
   };
 
@@ -220,7 +230,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     setSearchTerm(event.target.value);
   };
 
-  // search bar function
+  // search bar and category function
   const filteredTodoList = todoList.filter((todo) => {
     const matchCategory =
       selectedCategory === 'All' || todo.category === selectedCategory;
@@ -229,6 +239,54 @@ function TodoContainer({ tableName, isAddTodoForm }) {
       .includes(searchTerm.toLowerCase());
     return matchCategory && matchSearchTerm;
   });
+
+  // handle filter and sort
+  const handleFilterChange = (filterType, value) => {
+    setFilterOptions({
+      ...filterOptions,
+      [filterType]: value
+    });
+  };
+
+  const handleSortChange = (value) => {
+    setSortBy(value);
+  };
+
+  // filter and sort based on status, priority, due date
+  const filteredAndSortedTodoList = filteredTodoList
+    .filter((todo) => {
+      if (filterOptions.priority === 'All') {
+        return true;
+      }
+      return todo.priority === filterOptions.priority;
+    })
+
+    .filter((todo) => {
+      if (filterOptions.status === 'All') {
+        return true;
+      }
+      if (filterOptions.status === 'Completed') {
+        return todo.completed;
+      }
+      if (filterOptions.status === 'Pending') {
+        return !todo.completed;
+      }
+      return false;
+    })
+
+    .sort((a, b) => {
+      if (sortBy === 'Title A-Z') {
+        return a.title.localeCompare(b.title);
+      } else if (sortBy === 'Title Z-A') {
+        return b.title.localeCompare(a.title);
+      } else if (sortBy === 'Due Date') {
+        if (!a.dueDate && !b.dueDate) return 0;
+        if (!a.dueDate) return 1;
+        if (!b.dueDate) return -1;
+        return new Date(a.dueDate) - new Date(b.dueDate);
+      }
+      return 0;
+    });
 
   // handle view calendar click
   const handleViewCalendarClick = () => {
@@ -240,6 +298,24 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     navigate('/overview', { state: { todoList } });
   };
 
+  // handle pagination
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handleTodosPerPageChange = (newTodosPerPage) => {
+    setTodosPerPage(newTodosPerPage);
+    setCurrentPage(1);
+  };
+
+  // calculate the index range for the current page
+  const startIndex = (currentPage - 1) * todosPerPage;
+  const endIndex = startIndex + todosPerPage;
+  const todosForCurrentPage = filteredAndSortedTodoList.slice(
+    startIndex,
+    endIndex
+  );
+
   return (
     <>
       <div className={styles.appContainer}>
@@ -247,6 +323,9 @@ function TodoContainer({ tableName, isAddTodoForm }) {
           <h1 className={styles.mainHeader}>Todo List</h1>
         </Link>
         <div className={styles.headerContainer}>
+          <button onClick={handleOverviewButton} className={styles.overviewBtn}>
+            Overview
+          </button>
           <CategoryDropdown
             categories={['All', 'Work', 'Personal', 'Birthday', 'Wishlist']}
             onSelectCategory={onSelectCategory}
@@ -270,23 +349,24 @@ function TodoContainer({ tableName, isAddTodoForm }) {
             }}
             className={styles.addTodoBtn}
           >
-            Add New Todo
+            Add Todo
           </button>
 
           <button
             onClick={handleViewCalendarClick}
             className={styles.viewCalendarBtn}
           >
-            View Calendar
-          </button>
-
-          <button onClick={handleOverviewButton} className={styles.overviewBtn}>
-            Go to Overview
+            Calendar
           </button>
         </div>
 
         <hr className={styles.headerLine} />
-
+        <TodoFilter
+          filterOptions={filterOptions}
+          sortBy={sortBy}
+          handleFilterChange={handleFilterChange}
+          handleSortChange={handleSortChange}
+        />
         {isAddTodoForm && (
           <AddTodoForm
             onAddTodo={addTodo}
@@ -310,9 +390,18 @@ function TodoContainer({ tableName, isAddTodoForm }) {
           <>
             <Outlet />
             <TodoList
-              todoList={filteredTodoList}
+              todoList={todosForCurrentPage}
               onRemoveTodo={removeTodo}
               onUpdateTodo={updateTodo}
+            />
+            <TodoListPage
+              currentPage={currentPage}
+              totalPages={Math.ceil(
+                filteredAndSortedTodoList.length / todosPerPage
+              )}
+              onChangePage={handlePageChange}
+              todosPerPage={todosPerPage}
+              onTodosPerPageChange={handleTodosPerPageChange}
             />
           </>
         )}

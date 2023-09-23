@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import InputWithLabel from './InputWithLabel';
 import styles from './AddTodoForm.module.css';
+import { capitalizedTitle } from '../utils/utils';
+import { formatDateToISOString } from '../utils/formatDate';
 
 function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
   const [todoTitle, setTodoTitle] = useState('');
@@ -11,7 +13,8 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
 
   const handleTitleChange = (event) => {
     const newTodoTitle = event.target.value;
-    setTodoTitle(newTodoTitle);
+    const newCapitalizedTodoTitle = capitalizedTitle(newTodoTitle);
+    setTodoTitle(newCapitalizedTodoTitle);
   };
 
   const handlePriorityChange = (event) => {
@@ -36,7 +39,9 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
         title: todoTitle,
         priority: todoPriority,
         category: todoCategory !== null ? todoCategory : 'All',
-        dueDate: todoDueDate
+        // convert Due Date into user friendly form
+        // refers to https://stackoverflow.com/questions/17545708/parse-date-without-timezone-javascript/39209842#39209842
+        dueDate: formatDateToISOString(todoDueDate)
       });
       console.log(todoTitle);
       setTodoTitle('');
@@ -102,13 +107,6 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
                 <button type="submit" className={styles.addButton}>
                   Add
                 </button>
-                {/* <button
-                  type="button"
-                  onClick={handleCancelAdd}
-                  className={styles.cancelButton}
-                >
-                  Cancel
-                </button> */}
               </div>
             </form>
           </>

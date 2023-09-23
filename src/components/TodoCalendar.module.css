@@ -1,14 +1,14 @@
 .rbcCalendar {
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
     height: 75vh;
-    font-size: 1em;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 
 .rbcEvent {
     border: none;
     padding: 4px;
-    font-size: 1em;
+    font-size: 1.2rem;
     font-weight: 400;
     border-radius: 4px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
@@ -16,8 +16,8 @@
 }
 
 .mainPageButton {
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    font-size: 1.2 em;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
     color: #E9EEF0;
     background-color: #051e45;
     border: 2px solid #fefefe;

@@ -1,0 +1,95 @@
+.pageContainer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.todosPerPage, .todosPerPage select {
+    font-size: 1.6rem;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+.todosPerPage select {
+    margin-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pageContainer button {
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+    background: transparent;
+}
+
+.pageContainer button:not(.active):hover {
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #d1989d;
+    color:#fcfdfe;
+}
+.pageContainer button.active {
+    background-color: #444545;
+    color: #fefefe;
+    border-radius: 5px;
+    font-weight: bold;
+   
+}
+
+@media only screen and (max-width: 600px) {
+    .pageContainer {
+        position: relative;
+        margin: 20px auto;
+        text-align: center;
+        bottom: auto;
+        right: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .todosPerPage {
+        margin: 5px 0;
+    }
+
+    .todosPerPage select {
+        margin: 5px;
+    }
+
+    .todosPerPage label {
+        margin-bottom: 5px;
+    }
+
+    .pageContainer button:not(.previous):not(.next) {
+        display: none;
+    }
+        
+    .pageContainer button.previous,
+    .pageContainer button.next {
+        display: inline-block;
+    }
+
+    .navigation {
+        display: flex;
+        align-items: center;
+    }
+
+    .pageContainer button i {
+        font-size: 10px;
+    }
+    .todosPerPage label,
+    .todosPerPage select {
+        font-size: 15px;
+    }
+}
