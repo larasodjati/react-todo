@@ -1,0 +1,22 @@
+.footer {
+    background-color: #211f1f;
+    color: #fefefe;
+    font-family: 'Jost', Arial, Helvetica, sans-serif;
+    font-size: 1.4rem;
+    position: fixed;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    bottom: 0;
+    width: 100%
+}
+
+.footer a:visited {
+    color: #fefefe;
+}
+
+@media only screen and (max-width: 600px) {
+    .footer {
+        font-size: 0.75rem;
+    }
+}
