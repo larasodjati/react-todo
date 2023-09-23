@@ -52,8 +52,7 @@ function TodoOverview() {
 
       return (
         todo.completed &&
-        currentDay <= todoCompletedAt && // Check if the task is on or after the current day
-        todoCompletedAt <= endDate // Check if the task is on or before the end of the week
+        currentDay.toDateString() === todoCompletedAt.toDateString() // check if the task was completed on the current day
       );
     }).length;
 
