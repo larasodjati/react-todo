@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import InputWithLabel from './InputWithLabel';
 import styles from './AddTodoForm.module.css';
 import { capitalizedTitle } from '../utils/utils';
+import { formatDateToISOString } from '../utils/formatDate';
 
 function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
   const [todoTitle, setTodoTitle] = useState('');
@@ -33,19 +34,14 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
   const handleAddTodo = (event) => {
     event.preventDefault();
     if (todoTitle.trim() !== '') {
-      // convert Due Date into user friendly form
-      // refers to https://stackoverflow.com/questions/17545708/parse-date-without-timezone-javascript/39209842#39209842
-      const dueDateUTC = new Date(todoDueDate);
-      const offsetDueDate = dueDateUTC.getTimezoneOffset() * 60000;
-      const formattedDueDate = new Date(
-        dueDateUTC.getTime() + offsetDueDate
-      ).toISOString();
       onAddTodo({
         id: Date.now(),
         title: todoTitle,
         priority: todoPriority,
         category: todoCategory !== null ? todoCategory : 'All',
-        dueDate: formattedDueDate
+        // convert Due Date into user friendly form
+        // refers to https://stackoverflow.com/questions/17545708/parse-date-without-timezone-javascript/39209842#39209842
+        dueDate: formatDateToISOString(todoDueDate)
       });
       console.log(todoTitle);
       setTodoTitle('');

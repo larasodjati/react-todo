@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TodoListItem.module.css';
 import { capitalizedTitle } from '../utils/utils';
+import { formatDateToISOString } from '../utils/formatDate';
 
 function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -21,12 +22,9 @@ function TodoListItem({ todo, onRemoveTodo, onUpdateTodo }) {
   };
 
   const handleUpdateClick = () => {
-    // Convert the displayed date value (newDueDate) back to UTC time
-    const dueDateUTC = new Date(newDueDate);
-    const offsetDueDate = dueDateUTC.getTimezoneOffset() * 60000;
-    const formattedDueDate = new Date(
-      dueDateUTC.getTime() + offsetDueDate
-    ).toISOString(); // Convert back to ISO string
+    // convert Due Date into user friendly form
+    // refers to https://stackoverflow.com/questions/17545708/parse-date-without-timezone-javascript/39209842#39209842
+    const formattedDueDate = formatDateToISOString(newDueDate);
 
     onUpdateTodo(
       todo.id,
