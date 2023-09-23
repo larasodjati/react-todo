@@ -8,7 +8,8 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 2rem;
+    padding: 0;
+    margin: 0;
     text-align: center;
     height: 100vh;
     width: 100vw;
@@ -25,13 +26,17 @@
     font-size: 5em;
     color:#444545 ;
     margin-bottom: 1rem;
+    align-content: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
 .homeButton {
     all: unset;
-    width: 200px;
-    height: 50px;
-    font-size: 24px;
+    width: 250px;
+    height: 70px;
+    font-size: 30px;
     background: transparent;
     border: none;
     position: relative;
@@ -93,4 +98,27 @@
 .homeButton:active::after {
     transition: 0s;
     transform: translate(0, 5%);
+}
+
+@media only screen and (max-width: 600px) {
+    .heroSection {
+            background-image: none;
+            background-color: #fdebf0;
+            padding: 0;
+        }
+    
+        .headerHomepage {
+            font-size: 4rem;
+            margin:0;
+            padding:0;
+        }
+    
+        .homeButton {
+            width: 120px;
+            height: 30px;
+            font-size: 24px;
+
+        }
+
+    
 }
