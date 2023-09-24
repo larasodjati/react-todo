@@ -167,13 +167,39 @@
     }
 }    
 
-@media screen and (min-width: 601px) {
-    .chartContainer .legendPie {
-        position: absolute;
-        right: 10px;
-        /* Adjust this value to move the legend closer to the chart */
-        top: 50%;
-        /* Adjust this value to vertically center the legend */
-        transform: translateY(-50%);
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+
+    .todoListPageButton {
+        font-size: 0.75rem;
     }
+
+    .overviewContainer h2 {
+        font-size: 3rem;
+        margin-top: 50px;
+    }
+
+    .overviewContainer h3 {
+        font-size: 2rem;
+    }
+
+    .completedTasks {
+        font-size: 1.4rem;
+    }
+
+    .taskCount {
+        font-size: 1.8rem;
+    }
+
+    .tooltip {
+        width: 100px;
+        font-size: 0.75rem;
+
+    }
+
+    .legendChart {
+        text-align: center;
+        margin: 0;
+        padding: 10px;
+    }
+
 }

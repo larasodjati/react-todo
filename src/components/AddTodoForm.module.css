@@ -149,3 +149,41 @@
         font-size: 0.75rem;
     }
 }
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+
+    .modalContent {
+        max-width: 500px;
+    }
+
+    .modalContent h2 {
+        font-size: 2rem;
+    }
+
+    .modalContent form {
+        font-size: 1rem;
+    }
+
+    .modalContent label {
+        font-size: 1rem;
+    }
+
+    .modalContent select,
+    .modalContent input {
+        padding: 5px;
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    .modalContent input[type='date'] {
+        font-size: 1rem;
+    }
+
+    .modalContent .buttonGroup button {
+        font-size: 1rem;
+    }
+
+    .closeButton {
+        font-size: 1rem;
+    }
+}

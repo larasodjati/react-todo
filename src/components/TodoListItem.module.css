@@ -274,3 +274,37 @@
     }                               
 }
 
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .itemContainer {
+        padding: 5px;
+        margin: 5px 5px;
+        position: relative;
+    }
+
+    .todoListTitle {
+        font-size: 1.4rem;
+    }
+
+    .editButton i {
+        font-size: 1.2rem;
+    }
+
+    .subattribute {
+        font-size: 1rem;
+    }
+
+    .inputFields,
+    .selectFields {
+        font-size: 1.2rem;
+    }
+
+    .editingBlock label {
+        font-size: 1.2rem;
+    }
+
+    .updateButton {
+        font-size: 1rem;
+    }
+
+}
+

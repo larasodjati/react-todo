@@ -30,3 +30,23 @@
 .mainPageButton:hover {
     transform: scale(1.1);
 }
+
+@media only screen and (max-width: 600px) {
+    .rbcEvent {
+        font-size: 0.65rem;
+    }
+
+    .mainPageButton {
+        font-size: 0.75rem;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .rbcEvent {
+        font-size: 0.75rem;
+    }
+
+    .mainPageButton {
+        font-size: 0.75rem;
+    }
+}
