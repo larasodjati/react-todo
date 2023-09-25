@@ -65,6 +65,7 @@
     user-select: none;
      -webkit-user-select: none;
     touch-action: manipulation;
+    margin-right: 10px;
 }
 
 .categoryBtn:hover {

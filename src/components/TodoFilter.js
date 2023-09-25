@@ -41,10 +41,10 @@ function TodoFilter({
           value={sortBy}
           onChange={(e) => handleSortChange(e.target.value)}
         >
+          <option value="Newly Added">Newly Added</option>
           <option value="Title A-Z">Title: 'A-Z'</option>
           <option value="Title Z-A">Title: 'Z-A'</option>
           <option value="Due Date">Due Date</option>
-          <option value="Newly Added">Newly Added</option>
         </select>
       </div>
     </div>

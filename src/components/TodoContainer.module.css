@@ -76,6 +76,7 @@ body {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    margin-right: 10px;
 }
 
 .addTodoBtn:hover,
@@ -173,6 +174,7 @@ body {
     .searchForm {
         padding: 0.2rem 0.2rem;
         font-size: 0.6rem;
+        margin: 0;
             
     }
 
