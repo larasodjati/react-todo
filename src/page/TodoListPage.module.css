@@ -93,3 +93,31 @@
         font-size: 15px;
     }
 }
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .pageContainer {
+        position: relative;
+        margin: 30px auto;
+        text-align: center;
+        bottom: auto;
+        right: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pageContainer button,
+    .pageContainer i {
+        font-size: 1.2rem;
+    }
+
+    .pageContainer button {
+        margin-top: 20px;
+    }
+
+    .todosPerPage label,
+    .todosPerPage select {
+        font-size: 1.2rem;
+    }
+}

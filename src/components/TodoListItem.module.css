@@ -201,33 +201,17 @@
 @media only screen and (max-width: 600px) {
     .itemContainer {
         background-color: #fdf5d6;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        margin: 2px auto;
-        max-width: 100%;
+        margin: 5px 5px;
         padding: 3px;
-        box-sizing: border-box; 
+        position: relative;
     }
 
     .todoListTitle {
         font-size: 0.9rem;
-        margin: 0;
-    }
-
-    .subattributeContainer {
-        padding-top: 5px;
-        display: flex;
-        flex-direction:wrap;
-        flex-wrap: wrap;
-        align-items: center;
-        text-align: center;
     }
 
     .subattribute {
-        font-size: 0.75rem;
-        margin: 0;    
+        font-size: 0.75rem;   
     }
 
     .editButton i {
@@ -239,12 +223,6 @@
         margin-top: 5px;
     }
 
-    
-
-    .flexibleSpace {
-        flex-grow: 0;
-    }
-    
     .checkbox {
         width:12.5px;
         height: 12.5px;
@@ -272,5 +250,39 @@
         font-size: 0.8rem;
         padding: 4px 8px;
     }                               
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .itemContainer {
+        padding: 5px;
+        margin: 5px 5px;
+        position: relative;
+    }
+
+    .todoListTitle {
+        font-size: 1.4rem;
+    }
+
+    .editButton i {
+        font-size: 1.2rem;
+    }
+
+    .subattribute {
+        font-size: 1rem;
+    }
+
+    .inputFields,
+    .selectFields {
+        font-size: 1.2rem;
+    }
+
+    .editingBlock label {
+        font-size: 1.2rem;
+    }
+
+    .updateButton {
+        font-size: 1rem;
+    }
+
 }
 

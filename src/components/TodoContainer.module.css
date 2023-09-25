@@ -196,3 +196,38 @@ body {
         width:100%;
     }
 }
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+
+    .mainHeader {
+        font-size: 3rem;
+    }
+
+    .headerLine {
+        width: 100%;
+    }
+
+    .addTodoBtn,
+    .viewCalendarBtn,
+    .overviewBtn {
+        font-size: 1rem;
+    }
+
+    .searchForm {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #d1989d;
+        padding: 5px;
+    }
+
+    .searchInput {
+        line-height: 40px;
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .searchForm:hover {
+        width: 150px;
+    }
+
+}
