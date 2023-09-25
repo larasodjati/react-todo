@@ -23,7 +23,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     status: 'All',
     priority: 'All'
   });
-  const [sortBy, setSortBy] = useState('Title A-Z');
+  const [sortBy, setSortBy] = useState('Newly Added');
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage, setTodosPerPage] = useState(5);
 
@@ -68,6 +68,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
         const newTodo = {
           id: todo.id,
           title: todo.fields.title,
+          createdAt: todo.fields.createdAt || null,
           priority: todo.fields.priority,
           category: todo.fields.category,
           dueDate: todo.fields.dueDate || null,
@@ -105,12 +106,14 @@ function TodoContainer({ tableName, isAddTodoForm }) {
   }, [todoList]);
 
   const postTodo = async (todo) => {
+    const now = new Date().toISOString();
     const postTodos = {
       fields: {
         title: todo.title,
         priority: todo.priority,
         category: todo.category,
-        dueDate: todo.dueDate
+        dueDate: todo.dueDate,
+        createdAt: now
       }
     };
     const options = {
@@ -135,8 +138,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     newTodo.category = newTodo.category || selectedCategory || 'All';
     const addedTodo = await postTodo(newTodo);
     if (addedTodo) {
-      setTodoList([...todoList, { ...newTodo }]);
-      fetchData();
+      setTodoList([newTodo, ...todoList]);
     }
   };
 
@@ -222,9 +224,6 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     }
   };
 
-  const lastAddedTodo =
-    todoList.length > 0 ? todoList[todoList.length - 1].title : '';
-
   // handle search
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -284,6 +283,8 @@ function TodoContainer({ tableName, isAddTodoForm }) {
         if (!a.dueDate) return 1;
         if (!b.dueDate) return -1;
         return new Date(a.dueDate) - new Date(b.dueDate);
+      } else if (sortBy === 'Newly Added') {
+        return new Date(b.createdAt) - new Date(a.createdAt);
       }
       return 0;
     });
@@ -381,9 +382,6 @@ function TodoContainer({ tableName, isAddTodoForm }) {
             <strong>{removedTodo.title}</strong> has been removed.
           </p>
         )}
-        <p>
-          New thing to do is <strong>{lastAddedTodo}</strong>
-        </p>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
