@@ -7,6 +7,7 @@ import CategoryDropdown from './CategoryDropdown';
 import styles from './TodoContainer.module.css';
 import TodoFilter from './TodoFilter';
 import TodoListPage from '../page/TodoListPage';
+import { Hourglass } from 'react-loader-spinner';
 
 function TodoContainer({ tableName, isAddTodoForm }) {
   const { category } = useParams();
@@ -140,6 +141,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     if (addedTodo) {
       setTodoList([newTodo, ...todoList]);
     }
+    fetchData();
   };
 
   const updateTodo = async (
@@ -378,12 +380,14 @@ function TodoContainer({ tableName, isAddTodoForm }) {
         )}
 
         {removedTodo && (
-          <p>
-            <strong>{removedTodo.title}</strong> has been removed.
+          <p className={styles.removedTodoText}>
+            <strong>{removedTodo.title} has been removed</strong>
           </p>
         )}
         {isLoading ? (
-          <p>Loading...</p>
+          <div className={styles.loadingContainer}>
+            <Hourglass color="#00BFFF" height={120} width={100} />
+          </div>
         ) : (
           <>
             <Outlet />

@@ -159,6 +159,27 @@ body {
     color: white;
 }
 
+/* Styling for removed todo text */
+.removedTodoText {
+    background-color: #fb662b;
+    color: #fdfcfe;
+    padding: 10px;
+    margin-top: 50px;
+    border-radius: 2px;
+    text-align: center;
+    border: 1px solid #787777;
+    font-size: 1.6rem;
+    font-family: 'Figtree', Arial, Helvetica, sans-serif;
+}
+
+.removedTodoText {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for loading container */
+.loadingContainer {
+    margin-top: 50px;
+}
 @media only screen and (max-width: 600px) {
     body {
         background-image: none;
@@ -191,7 +212,8 @@ body {
         font-size: 0.75rem;
         border-radius: 10px;
         padding: 0 10px;
-        line-height: 10px;
+        height: 20px;
+        line-height: 20px;
     }
 
     .headerLine{
@@ -223,6 +245,7 @@ body {
     }
 
     .searchInput {
+        height: 40px;
         line-height: 40px;
         font-size: 1rem;
         padding: 0 10px;
