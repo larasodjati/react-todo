@@ -181,6 +181,7 @@ body {
     margin-top: 50px;
 }
 
+/* Styling for night mode toggle */
 .nightModeButtonWrapper {
     position: absolute;
     right: 20px;

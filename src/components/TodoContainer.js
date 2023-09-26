@@ -44,7 +44,6 @@ function TodoContainer({
   };
 
   const toggleAddTodo = () => {
-    console.log('button clicked');
     setIsAddingTodo(!isAddingTodo);
   };
 
@@ -160,9 +159,6 @@ function TodoContainer({
     newCompleted,
     newCompletedAt
   ) => {
-    console.log('updateTodo received values:');
-    console.log('newCompleted:', newCompleted);
-    console.log('newCompletedAt:', newCompletedAt);
     const updateTodos = {
       fields: {
         title: newTitle,
@@ -433,7 +429,9 @@ function TodoContainer({
 }
 TodoContainer.propTypes = {
   tableName: PropTypes.string,
-  isAddTodoForm: PropTypes.bool
+  isAddTodoForm: PropTypes.bool,
+  isNightMode: PropTypes.bool,
+  toggleNightMode: PropTypes.func
 };
 
 export default TodoContainer;

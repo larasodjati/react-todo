@@ -73,7 +73,6 @@ function TodoOverview() {
       } else {
         pendingCategories[category] = pendingCategories[category].concat(todo);
       }
-      console.log('pendingCategories', pendingCategories[category]);
     }
     return pendingCategories[category];
   });
