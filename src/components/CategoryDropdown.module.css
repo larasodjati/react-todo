@@ -33,7 +33,6 @@
     display: block;
 }
 
-
 .categoryBtn {
     align-self: center;
     background-color: #d1989d;
@@ -65,6 +64,7 @@
     user-select: none;
      -webkit-user-select: none;
     touch-action: manipulation;
+    margin-right: 10px;
 }
 
 .categoryBtn:hover {

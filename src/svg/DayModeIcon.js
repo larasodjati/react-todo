@@ -1,0 +1,106 @@
+import React from 'react';
+
+const DayModeIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="64"
+    height="64"
+    border="none"
+    stroke="none"
+  >
+    {/* day mode circle from iconfinder.com*/}
+    <circle
+      cx="12"
+      cy="12"
+      r="4"
+      fill="#FF9F1C"
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* day mode line from iconfinder.com */}
+    <line
+      x1="12"
+      y1="4"
+      x2="12"
+      y2="6"
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <line
+      x1="17.66"
+      y1="6.34"
+      x2="16.24"
+      y2="7.76"
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <line
+      x1="20"
+      y1="12"
+      x2="18"
+      y2="12"
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <line
+      x1="17.66"
+      y1="17.66"
+      x2="16.24"
+      y2="16.24"
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <line
+      x1="12"
+      y1="20"
+      x2="12"
+      y2="18"
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <line
+      x1="6.34"
+      y1="17.66"
+      x2="7.76"
+      y2="16.24"
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <line
+      x1="4"
+      y1="12"
+      x2="6"
+      y2="12"
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <line
+      x1="6.34"
+      y1="6.34"
+      x2="7.76"
+      y2="7.76"
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export default DayModeIcon;

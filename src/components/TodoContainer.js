@@ -7,8 +7,16 @@ import CategoryDropdown from './CategoryDropdown';
 import styles from './TodoContainer.module.css';
 import TodoFilter from './TodoFilter';
 import TodoListPage from '../page/TodoListPage';
+import { Hourglass } from 'react-loader-spinner';
+import DayModeIcon from '../svg/DayModeIcon';
+import NightModeIcon from '../svg/NightModeIcon';
 
-function TodoContainer({ tableName, isAddTodoForm }) {
+function TodoContainer({
+  tableName,
+  isAddTodoForm,
+  isNightMode,
+  toggleNightMode
+}) {
   const { category } = useParams();
   const navigate = useNavigate();
 
@@ -23,7 +31,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     status: 'All',
     priority: 'All'
   });
-  const [sortBy, setSortBy] = useState('Title A-Z');
+  const [sortBy, setSortBy] = useState('Newly Added');
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage, setTodosPerPage] = useState(5);
 
@@ -36,7 +44,6 @@ function TodoContainer({ tableName, isAddTodoForm }) {
   };
 
   const toggleAddTodo = () => {
-    console.log('button clicked');
     setIsAddingTodo(!isAddingTodo);
   };
 
@@ -68,6 +75,7 @@ function TodoContainer({ tableName, isAddTodoForm }) {
         const newTodo = {
           id: todo.id,
           title: todo.fields.title,
+          createdAt: todo.fields.createdAt || null,
           priority: todo.fields.priority,
           category: todo.fields.category,
           dueDate: todo.fields.dueDate || null,
@@ -105,12 +113,14 @@ function TodoContainer({ tableName, isAddTodoForm }) {
   }, [todoList]);
 
   const postTodo = async (todo) => {
+    const now = new Date().toISOString();
     const postTodos = {
       fields: {
         title: todo.title,
         priority: todo.priority,
         category: todo.category,
-        dueDate: todo.dueDate
+        dueDate: todo.dueDate,
+        createdAt: now
       }
     };
     const options = {
@@ -135,9 +145,9 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     newTodo.category = newTodo.category || selectedCategory || 'All';
     const addedTodo = await postTodo(newTodo);
     if (addedTodo) {
-      setTodoList([...todoList, { ...newTodo }]);
-      fetchData();
+      setTodoList([newTodo, ...todoList]);
     }
+    fetchData();
   };
 
   const updateTodo = async (
@@ -149,9 +159,6 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     newCompleted,
     newCompletedAt
   ) => {
-    console.log('updateTodo received values:');
-    console.log('newCompleted:', newCompleted);
-    console.log('newCompletedAt:', newCompletedAt);
     const updateTodos = {
       fields: {
         title: newTitle,
@@ -222,9 +229,6 @@ function TodoContainer({ tableName, isAddTodoForm }) {
     }
   };
 
-  const lastAddedTodo =
-    todoList.length > 0 ? todoList[todoList.length - 1].title : '';
-
   // handle search
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -284,6 +288,8 @@ function TodoContainer({ tableName, isAddTodoForm }) {
         if (!a.dueDate) return 1;
         if (!b.dueDate) return -1;
         return new Date(a.dueDate) - new Date(b.dueDate);
+      } else if (sortBy === 'Newly Added') {
+        return new Date(b.createdAt) - new Date(a.createdAt);
       }
       return 0;
     });
@@ -318,7 +324,11 @@ function TodoContainer({ tableName, isAddTodoForm }) {
 
   return (
     <>
-      <div className={styles.appContainer}>
+      <div
+        className={`${styles.appContainer} ${
+          isNightMode ? styles.nightMode : ''
+        }`}
+      >
         <Link to="/" className={styles.mainHeaderLink}>
           <h1 className={styles.mainHeader}>Todo List</h1>
         </Link>
@@ -358,6 +368,15 @@ function TodoContainer({ tableName, isAddTodoForm }) {
           >
             Calendar
           </button>
+
+          <div className={styles.nightModeButtonWrapper}>
+            <button
+              onClick={toggleNightMode}
+              className={isNightMode ? styles.nightMode : ''}
+            >
+              {isNightMode ? <DayModeIcon /> : <NightModeIcon />}
+            </button>
+          </div>
         </div>
 
         <hr className={styles.headerLine} />
@@ -377,15 +396,14 @@ function TodoContainer({ tableName, isAddTodoForm }) {
         )}
 
         {removedTodo && (
-          <p>
-            <strong>{removedTodo.title}</strong> has been removed.
+          <p className={styles.removedTodoText}>
+            <strong>{removedTodo.title} has been removed</strong>
           </p>
         )}
-        <p>
-          New thing to do is <strong>{lastAddedTodo}</strong>
-        </p>
         {isLoading ? (
-          <p>Loading...</p>
+          <div className={styles.loadingContainer}>
+            <Hourglass color="#00BFFF" height={120} width={100} />
+          </div>
         ) : (
           <>
             <Outlet />
@@ -411,7 +429,9 @@ function TodoContainer({ tableName, isAddTodoForm }) {
 }
 TodoContainer.propTypes = {
   tableName: PropTypes.string,
-  isAddTodoForm: PropTypes.bool
+  isAddTodoForm: PropTypes.bool,
+  isNightMode: PropTypes.bool,
+  toggleNightMode: PropTypes.func
 };
 
 export default TodoContainer;

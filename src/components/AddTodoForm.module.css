@@ -24,9 +24,10 @@
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #f7f5f3;
+    background-color: #a3aeae;
     padding: 20px;
     border: 1px solid #888;
+    border-radius: 20px;
     width: 100%;
     max-width: 600px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
