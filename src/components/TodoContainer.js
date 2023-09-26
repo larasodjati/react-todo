@@ -8,8 +8,15 @@ import styles from './TodoContainer.module.css';
 import TodoFilter from './TodoFilter';
 import TodoListPage from '../page/TodoListPage';
 import { Hourglass } from 'react-loader-spinner';
+import DayModeIcon from '../svg/DayModeIcon';
+import NightModeIcon from '../svg/NightModeIcon';
 
-function TodoContainer({ tableName, isAddTodoForm }) {
+function TodoContainer({
+  tableName,
+  isAddTodoForm,
+  isNightMode,
+  toggleNightMode
+}) {
   const { category } = useParams();
   const navigate = useNavigate();
 
@@ -321,7 +328,11 @@ function TodoContainer({ tableName, isAddTodoForm }) {
 
   return (
     <>
-      <div className={styles.appContainer}>
+      <div
+        className={`${styles.appContainer} ${
+          isNightMode ? styles.nightMode : ''
+        }`}
+      >
         <Link to="/" className={styles.mainHeaderLink}>
           <h1 className={styles.mainHeader}>Todo List</h1>
         </Link>
@@ -361,6 +372,15 @@ function TodoContainer({ tableName, isAddTodoForm }) {
           >
             Calendar
           </button>
+
+          <div className={styles.nightModeButtonWrapper}>
+            <button
+              onClick={toggleNightMode}
+              className={isNightMode ? styles.nightMode : ''}
+            >
+              {isNightMode ? <DayModeIcon /> : <NightModeIcon />}
+            </button>
+          </div>
         </div>
 
         <hr className={styles.headerLine} />

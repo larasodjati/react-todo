@@ -40,7 +40,7 @@ body {
 .headerLine {
     border-top: 10px;
     border: solid 1px gainsboro;
-    width: 75%; 
+    width: 100%; 
     margin:25px; 
 }
 
@@ -180,6 +180,12 @@ body {
 .loadingContainer {
     margin-top: 50px;
 }
+
+.nightModeButtonWrapper {
+    position: absolute;
+    right: 20px;
+}
+
 @media only screen and (max-width: 600px) {
     body {
         background-image: none;
@@ -219,6 +225,11 @@ body {
     .headerLine{
         width:100%;
     }
+
+    .nightModeButtonWrapper {
+      display: none
+    }
+
 }
 
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
@@ -255,4 +266,7 @@ body {
         width: 150px;
     }
 
+    .nightModeButtonWrapper {
+       display: none;
+    }
 }

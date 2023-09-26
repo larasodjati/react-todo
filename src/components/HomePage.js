@@ -6,7 +6,7 @@ import styles from './HomePage.module.css';
 function HomePage() {
   return (
     <div className={styles.heroSection}>
-      <h1 className={styles.headerHomepage}>Welcome to Todo List</h1>
+      <h1 className={styles.headerHomepage}>Welcome to Todo App</h1>
       <Link to="/todo-list">
         <button className={styles.homeButton}>My Todo List</button>
       </Link>

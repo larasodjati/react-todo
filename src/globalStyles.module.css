@@ -1,0 +1,6 @@
+/* Styling for night mode */
+.nightMode {
+    background-image: none;
+    background-color: #9e9d9d;
+    color: #ffffff;
+}
