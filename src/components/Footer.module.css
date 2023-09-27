@@ -11,6 +11,10 @@
     width: 100%
 }
 
+.footer a:link {
+    color: #fefefe;
+}
+
 .footer a:visited {
     color: #fefefe;
 }

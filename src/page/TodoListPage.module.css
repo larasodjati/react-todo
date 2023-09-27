@@ -6,6 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    z-index: 999;
 }
 
 .todosPerPage, .todosPerPage select {
@@ -122,7 +123,7 @@
     }
 }
 
-@media only screen and (min-width: 1025px) and (max-width: 1710px) {
+@media only screen and (min-width: 1025px) and (max-width: 1800px) {
     .pageContainer {
         position: relative;
     }
