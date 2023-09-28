@@ -101,11 +101,11 @@ function TodoOverview() {
       {/* Display the number of completed and pending tasks */}
       <div className={styles.overviewSum}>
         <div className={styles.overviewBox}>
-          <p className={styles.completedTasks}>Completed Tasks:</p>
+          <p className={styles.completedTasks}>Completed Todos:</p>
           <p className={styles.taskCount}>{completedTasks.length}</p>
         </div>
         <div className={styles.overviewBox}>
-          <p className={styles.completedTasks}>Pending Tasks:</p>
+          <p className={styles.completedTasks}>Pending Todos:</p>
           <p className={styles.taskCount}>{pendingTasks.length}</p>
         </div>
       </div>
@@ -136,7 +136,7 @@ function TodoOverview() {
       </div>
 
       {/* Pending Categories Pie Chart */}
-      <h3>Pending Tasks by Category</h3>
+      <h3>Pending Todos by Category</h3>
       <ResponsiveContainer width="100%" maxWidth={600} height={300}>
         <PieChart>
           <Pie

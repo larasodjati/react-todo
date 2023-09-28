@@ -354,19 +354,19 @@ function TodoContainer({
             </form>
           </>
           <button
+            onClick={handleViewCalendarClick}
+            className={styles.viewCalendarBtn}
+          >
+            Calendar
+          </button>
+
+          <button
             onClick={() => {
               toggleAddTodo();
             }}
             className={styles.addTodoBtn}
           >
             Add Todo
-          </button>
-
-          <button
-            onClick={handleViewCalendarClick}
-            className={styles.viewCalendarBtn}
-          >
-            Calendar
           </button>
 
           <div className={styles.nightModeButtonWrapper}>
