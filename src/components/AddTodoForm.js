@@ -53,7 +53,6 @@ function AddTodoForm({ onAddTodo, onClose, isAddingTodo }) {
   };
 
   const handleCancelAdd = () => {
-    console.log('Cancel button clicked');
     onClose();
   };
   return (
